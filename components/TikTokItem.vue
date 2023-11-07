@@ -13,7 +13,7 @@ const stats = computed(() => {
 </script>
 
 <template>
-	<div class="card shadow-xl bg-neutral">
+	<div class="card shadow-xl bg-neutral" :key="tikok.id">
 		<figure><img :src="tikok.thumbnailDynamic" alt="Shoes" /></figure>
 		<div class="card-body py-2 pb-3">
 			<h2 class="card-title">{{ metaData.author.nickname }}</h2>

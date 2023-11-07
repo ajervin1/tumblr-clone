@@ -15,14 +15,14 @@ export default defineNuxtConfig({
   //     poll: 1000
   //   }
   // },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss',  ],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {
     head: {
       htmlAttrs: {
-        "data-theme": 'dracula',
+        "data-theme": 'dark',
       },
   
     }
