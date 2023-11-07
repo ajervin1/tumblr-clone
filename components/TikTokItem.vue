@@ -1,7 +1,8 @@
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
-const {tiktok: data} = defineProps(['tiktok']);
-const  tikok = computed(() => {
+
+const { tiktok: data } = defineProps([ 'tiktok' ]);
+const tikok = computed(() => {
 	return data._tik
 })
 const metaData = computed(() => {
@@ -14,19 +15,32 @@ const stats = computed(() => {
 
 <template>
 	<div class="card shadow-xl bg-neutral" :key="tikok.id">
-		<figure><img :src="tikok.thumbnailDynamic" alt="Shoes" /></figure>
+		<figure>
+			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" >
+				<img :src="tikok.thumbnailDynamic" alt="Shoes"/>
+			</NuxtLink>
+		</figure>
 		<div class="card-body py-2 pb-3">
 			<h2 class="card-title">{{ metaData.author.nickname }}</h2>
 			<p class="text-sm">{{ metaData.desc }}</p>
 			<div class="flex items-center justify-between text-xs flex-wrap=['none']">
-				<h6> {{ new Date(metaData.create_time_ISO).toLocaleDateString()  }}</h6>
-				<h6><font-awesome-icon icon="far fa-heart" />  {{ stats.digg_count }}</h6>
-				<h6><font-awesome-icon icon="fas fa-play" class="mr-1" />{{ stats.play_count }}</h6>
-				<h6><font-awesome-icon icon="far fa-comment" />  {{ stats.comment_count }}</h6>
+				<h6> {{ new Date(metaData.create_time_ISO).toLocaleDateString() }}</h6>
+				<h6>
+					<font-awesome-icon icon="far fa-heart"/>
+					{{ stats.digg_count }}
+				</h6>
+				<h6>
+					<font-awesome-icon icon="fas fa-play" class="mr-1"/>
+					{{ stats.play_count }}
+				</h6>
+				<h6>
+					<font-awesome-icon icon="far fa-comment"/>
+					{{ stats.comment_count }}
+				</h6>
 			</div>
 		</div>
-		
-
+	
+	
 	</div>
 </template>
 

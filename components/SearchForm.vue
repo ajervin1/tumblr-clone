@@ -1,5 +1,5 @@
 <script setup >
-const term = ref();
+const term = ref('emelyelikeslemonade');
 const tiktoks = ref(null);
 const emit = defineEmits(['search'])
 
