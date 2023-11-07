@@ -25,7 +25,24 @@ async function loadMore() {
 
 </script>
 <template>
-	<main class="app container mx-auto py-10 ">
+	<main class="app container mx-auto pb-10">
+		<div class="navbar bg-base-300">
+			<div class="flex-1">
+				<a class="btn btn-ghost normal-case text-xl">TikTok Flow</a>
+			</div>
+			<div class="flex-none gap-2">
+				<div class="form-control">
+					<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto"/>
+				</div>
+				<!-- Avatar -->
+				<button tabindex="0" class="btn btn-ghost btn-circle avatar">
+					<div class="w-10 rounded-full">
+						<img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/>
+					</div>
+				</button>
+			
+			</div>
+		</div>
 		<h2>{{ cursor }}</h2>
 		<h2>{{ total }}</h2>
 		<SearchForm @search="handleSubmit"/>

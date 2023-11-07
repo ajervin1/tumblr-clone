@@ -25,8 +25,26 @@ async function loadMore(  ) {
 </script>
 <template>
 	<main class="app container mx-auto py-10 ">
-		<h2>{{ cursor }}</h2>
-		<h2>{{ total }}</h2>
+		<div class="navbar bg-base-100">
+			<div class="flex-1">
+				<a class="btn btn-ghost normal-case text-xl">daisyUI</a>
+			</div>
+			<div class="flex-none gap-2">
+				<div class="form-control">
+					<input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
+				</div>
+				<!-- DropDown -->
+				<div class="dropdown dropdown-end">
+					<label tabindex="0" class="btn btn-ghost btn-circle avatar">
+						<div class="w-10 rounded-full">
+							<img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+						</div>
+					</label>
+				</div>
+			</div>
+		</div>
+		
+
 		<SearchForm @search="handleSubmit"/>
 		<div class="grid grid-cols-3 gap-8">
 			<TikTokItem v-if="tiktoks" v-for="tiktok in tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
