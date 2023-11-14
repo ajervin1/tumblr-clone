@@ -10,6 +10,9 @@ export default defineNuxtConfig({
       }
     }
   },
+  typescript: {
+    strict: false,
+  },
   // watchers: {
   //   webpack: {
   //     aggregateTimeout: 300,

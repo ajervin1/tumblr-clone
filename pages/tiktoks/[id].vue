@@ -1,21 +1,29 @@
-<script setup lang="ts">
+<!-- ShowPage /tiktoks/:id -->
+<script setup lang="ts" type="module">
+/*Display individual tiktok
+* Display Individual TikTok
+* Get her from clicking on the tiktok image
+* This page will help navigate to the music user and hashtag page
+* */
 import useStore from "~/store";
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const store = useStore();
 const route = useRoute()
-const url = `https://api.tik.fail/v2/search?videoID=${route.params.id}`
-// When accessing /posts/1, route.params.id will be 1
-// @ts-ignore
+
 await store.fetchTikTokById(route.params.id);
 const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,
 }
-
+// Can just pull data out of store results
+const hashtags = data.metadata.text_extra.map(hash => hash.hashtag_name);
+// var regexpHashtag = new RegExp(/#[a-zA-Z\d]+/g);
+var regexp = /#\S+/g;
+let description = data.metadata.desc;
+description = description.replace(regexp, '');
 function millisToMinutesAndSeconds(millis) {
 	const minutes = Math.floor(millis / 60000);
-	const seconds:any = ((millis % 60000) / 1000).toFixed(0);
+	const seconds = ((millis % 60000) / 1000).toFixed(0);
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
@@ -23,8 +31,8 @@ function millisToMinutesAndSeconds(millis) {
 
 <template>
 	<main class="show-container pb-10">
+		{{ description }}
 		<NavBar/>
-		
 		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
 			<!-- Video Item -->
 			<figure class="">
@@ -35,22 +43,29 @@ function millisToMinutesAndSeconds(millis) {
 		<!-- Icons -->
 		<section class="container mx-auto  w-[70%] bg-gray-700 shadow-2xl p-4 px-8">
 			<div class="flex gap-10">
-				<figure class="avatar-container">
+				<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="avatar-container">
 					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"
 					     class="w-36 rounded-full" alt="">
-				</figure>
-				<!-- Author Infor -->
+				</NuxtLink>
+				<!-- Author Info -->
 				<div class="metadata flex flex-col justify-evenly flex-grow">
 					<div class="flex items-center gap-2">
 						<h2 class="text-lg font-semibold text-white">{{ data.metadata.author.nickname }}</h2>
-						<h6 class="font-semibold text-neutral-400">@{{ data.metadata.author.unique_id }}</h6>
+						<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="font-semibold text-neutral-400">@{{ data.metadata.author.unique_id }}</NuxtLink>
 					</div>
 					<!-- Description -->
-					<p class="text-neutral-400 lead font-normal">{{ data.metadata.desc }}</p>
+					<p class="text-neutral-400 lead font-normal">{{ description }}</p>
+					<!-- Hashtags -->
+					<div class="flex flex-wrap gap-2">
+						<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
+							#{{ hash }}
+						</NuxtLink>
+					</div>
+			
 					<!-- Music Info -->
 					<div class="music flex items-center gap-1.5">
 						<font-awesome-icon icon="fas fa-music "/>
-						<h2 class="font-semibold text-lg text-white">{{ data.metadata.music.title }}</h2>
+						<NuxtLink :to="`/music/${data.metadata.music.title}`" class="font-semibold text-lg text-white">{{ data.metadata.music.title }}</NuxtLink>
 						<h6 class="text-sm">> {{ data.metadata.music.author }}</h6>
 					</div>
 					<!-- Icons -->

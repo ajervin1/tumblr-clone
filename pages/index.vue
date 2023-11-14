@@ -1,7 +1,6 @@
-<script setup >
-// Trending Page
-import SearchForm from "~/components/SearchForm.vue";
-import useStore from "~/store.ts";
+<!-- Trending Page -->
+<script setup lang="ts" type="module">
+import useStore from "~/store";
 
 const store = useStore();
 await store.searchByHashtag('foryou');
@@ -14,11 +13,11 @@ await store.searchByHashtag('foryou');
 
 
 
-async function loadMore() {
-	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ term.value }&cursor=${ cursor.value }&sortBy=date&legacySearch=true`, {});
-	tiktoks.value = [ ...tiktoks.value, ...data.itemList ]
-	cursor.value = data.lookup.pagination.nextCursor;
-}
+// async function loadMore() {
+// 	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ term.value }&cursor=${ cursor.value }&sortBy=date&legacySearch=true`, {});
+// 	tiktoks.value = [ ...tiktoks.value, ...data.itemList ]
+// 	cursor.value = data.lookup.pagination.nextCursor;
+// }
 
 </script>
 <template>
@@ -36,7 +35,9 @@ async function loadMore() {
 			<div class="grid grid-cols-4 gap-8">
 				<TikTokItem v-for="tiktok in store.itemList" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
-<!--			<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>-->
+<!--
+			<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
+-->
 		</section>
 	
 	

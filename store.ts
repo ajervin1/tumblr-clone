@@ -31,16 +31,8 @@ const useStore = defineStore('state', {
 		setTerm(newTerm){
 			this.term = newTerm;
 		},
-		async fetchTodos() {
-			const { data } = await useFetch('https://jsonplaceholder.typicode.com/todos');
-			console.log(data)
-			if (data.value) {
-			
-				this.todos = data.value;
-			}
-		},
 		async searchByUsername(username = 'avajustin', cursor = 0){
-			const {data} = await useAsyncData('search-result', () => {
+			const {data} = await useAsyncData('user-result', () => {
 				return $fetch(baseUrl, {
 					params: {
 						usernames: username,
@@ -56,7 +48,7 @@ const useStore = defineStore('state', {
 			return data;
 		},
 		async searchByHashtag(hashtagName = 'foryou', cursor = 0){
-			const {data} = await useAsyncData('search-result', () => {
+			const {data} = await useAsyncData('hashtag-result', () => {
 				return $fetch(baseUrl, {
 					params: {
 						hashtagName,
@@ -66,14 +58,13 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			
 			if ( data.value ){
 				this.data = data.value
 			}
 			return data;
 		},
 		async searchByMusicTitle(musicTitle = 'akon', cursor = 0){
-			const {data} = await useAsyncData('search-result', () => {
+			const {data} = await useAsyncData('music-result', () => {
 				return $fetch(baseUrl, {
 					params: {
 						musicTitle,
@@ -83,7 +74,6 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			
 			if ( data.value ){
 				this.data = data.value
 			}
@@ -94,6 +84,7 @@ const useStore = defineStore('state', {
 				return $fetch(baseUrl, {
 					params: {
 						videoID: videoId,
+						legacySearch: true,
 					},
 				})
 			});
