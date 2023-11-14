@@ -3,10 +3,11 @@ import { defineStore } from "pinia";
 const baseUrl = "https://api.tik.fail/v2/search"
 const useStore = defineStore('state', {
 	state: () => ({
-		term: "avajustin",
+		term: "iamoliviaponton",
 		data: null,
 		tiktoks: [],
 		tiktok: null,
+		cursor: 0,
 	}),
 	getters: {
 		pagination: (state) => {
@@ -28,8 +29,11 @@ const useStore = defineStore('state', {
 		}
 	},
 	actions: {
-		setTerm(newTerm){
-			this.term = newTerm;
+		async initFunction(){
+			const {data} = await useFetch("https://api.tik.fail/v2/search?usernames=avajustin&cursor=8&sortBy=date&legacySearch=true", {
+				server: true
+			});
+			console.log(data.value);
 		},
 		async searchByUsername(username = 'avajustin', cursor = 0){
 			const {data} = await useAsyncData('user-result', () => {
@@ -42,10 +46,15 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			if ( data.value ){
-				this.data = data.value
+			// If user wants to load more items
+			if (cursor > 0){
+				this.data = data.value;
+				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
+			} else {
+				// Initial Load
+				this.data = data.value;
+				this.tiktoks = data.value.itemList;
 			}
-			return data;
 		},
 		async searchByHashtag(hashtagName = 'foryou', cursor = 0){
 			const {data} = await useAsyncData('hashtag-result', () => {
@@ -58,10 +67,15 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			if ( data.value ){
-				this.data = data.value
+			// If user wants to load more items
+			if (cursor > 0){
+				this.data = data.value;
+				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
+			} else {
+				// Initial Load
+				this.data = data.value;
+				this.tiktoks = data.value.itemList;
 			}
-			return data;
 		},
 		async searchByMusicTitle(musicTitle = 'akon', cursor = 0){
 			const {data} = await useAsyncData('music-result', () => {
@@ -74,10 +88,15 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			if ( data.value ){
-				this.data = data.value
+			// If user wants to load more items
+			if (cursor > 0){
+				this.data = data.value;
+				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
+			} else {
+				// Initial Load
+				this.data = data.value;
+				this.tiktoks = data.value.itemList;
 			}
-			return data;
 		},
 		async fetchTikTokById(videoId = "7300945885695954206",){
 			const {data} = await useAsyncData('single-tiktok', () => {

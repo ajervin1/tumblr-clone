@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   //     poll: 1000
   //   }
   // },
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts','nuxt-icon', '@pinia/nuxt' ],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],

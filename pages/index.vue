@@ -1,16 +1,8 @@
 <!-- Trending Page -->
-<script setup lang="ts" type="module">
-import { Icon } from '#components'
-const MyIcon = h(Icon, { name: 'uil:twitter' })
-import useStore from "~/store";
-
+<script setup lang="ts" >
+import useStore from "~/store.js";
 const store = useStore();
 await store.searchByHashtag('foryou');
-const heart = ref('heroicons:heart')
-const comment = ref('heroicons:chat-bubble-oval-left-solid')
-const play = ref('heroicons:play')
-const time = ref('heroicons:clock')
-const music = ref('heroicons:musical-note-20-solid')
 
 
 
@@ -19,17 +11,18 @@ const music = ref('heroicons:musical-note-20-solid')
 
 
 
-// async function loadMore() {
-// 	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ term.value }&cursor=${ cursor.value }&sortBy=date&legacySearch=true`, {});
-// 	tiktoks.value = [ ...tiktoks.value, ...data.itemList ]
-// 	cursor.value = data.lookup.pagination.nextCursor;
-// }
+
+
+
+async function loadMore() {
+	await store.searchByHashtag('foryou', store.pagination.nextCursor);
+	
+}
 
 </script>
 <template>
 	<main class="app pb-10">
-		<Icon :name="time" size="18" />
-		
+	
 		<NavBar />
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4">
@@ -41,11 +34,9 @@ const music = ref('heroicons:musical-note-20-solid')
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
 			<div class="grid grid-cols-4 gap-8">
-				<TikTokItem v-for="tiktok in store.itemList" :tiktok="tiktok" :key="tiktok._tik.id"/>
+				<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
-<!--
-			<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
--->
+			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
 		</section>
 	
 	
