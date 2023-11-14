@@ -15,10 +15,12 @@ const stats = computed(() => {
 
 <template>
 	<div class="card shadow-xl bg-neutral" :key="tikok.id">
-		<figure>
-			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" >
-				<img :src="tikok.thumbnailDynamic" alt="Shoes"/>
-			</NuxtLink>
+		<figure class="h-[375px] relative">
+<!--			<div class="bg-image"-->
+<!--			:style="{color: 'blue',backgroundImage: `url(${tikok.thumbnailDynamic})`}"-->
+<!--			></div>-->
+			<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background"/>
+<!--			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" ></NuxtLink>-->
 		</figure>
 		<div class="card-body py-2 pb-3">
 			<h2 class="card-title">{{ metaData.author.nickname }}</h2>
@@ -45,5 +47,22 @@ const stats = computed(() => {
 </template>
 
 <style scoped>
-
+.bg-image {
+	background-repeat: no-repeat;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background-position: center center;
+}
+.background {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
 </style>

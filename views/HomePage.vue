@@ -46,7 +46,7 @@ async function loadMore(  ) {
 		
 
 		<SearchForm @search="handleSubmit"/>
-		<div class="grid grid-cols-3 gap-8">
+		<div class="grid grid-cols-4 gap-8">
 			<TikTokItem v-if="tiktoks" v-for="tiktok in tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 		</div>
 		<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>

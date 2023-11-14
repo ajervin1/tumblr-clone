@@ -13,7 +13,7 @@ async function handleEnter(e) {
 
 <template>
 	<form @submit="handleEnter">
-		<input type="text" class="input input-bordered w-64 input-primary" v-model="term" placeholder="Search Username">
+		<input type="text" class="input input-bordered w-24 md:w-auto" v-model="term" placeholder="Search Username">
 	</form>
 </template>
 

@@ -12,6 +12,7 @@ module.exports = {
 		themes: ["light", "dark", "cupcake", 'dracula'],
 	},
 	plugins: [
+		require("@tailwindcss/typography"),
 		require('daisyui'),
 	],
 
