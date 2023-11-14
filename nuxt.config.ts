@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 // @ts-ignore
+// @ts-ignore
 export default defineNuxtConfig({
   webpack: {
     loaders: {
@@ -15,8 +16,8 @@ export default defineNuxtConfig({
   //     poll: 1000
   //   }
   // },
-  devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt' ],
+  devtools: { enabled: true },
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@pinia/nuxt' ],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {
@@ -27,4 +28,18 @@ export default defineNuxtConfig({
   
     }
   },
+  googleFonts: {
+    families: {
+      // "Open Sans": [100,200,300,400,500,600,700],
+      // "Montserrat": [100,200,300,400,500,600,700],
+      // "Roboto": [100,200,300,400,500,600,700],
+      // "Poppins": [100,200,300,400,500,600,700],
+      // "Raleway": [100,200,300,400,500,600,700],
+      // "Inter": [100,200,300,400,500,600,700],
+      Lato: [100,200,300,400,500,600,700],
+    },
+    display: 'swap'
+    // @ts-ignore
+    // "Open Sans": true,
+  }
 })

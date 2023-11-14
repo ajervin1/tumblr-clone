@@ -19,8 +19,9 @@ const stats = computed(() => {
 <!--			<div class="bg-image"-->
 <!--			:style="{color: 'blue',backgroundImage: `url(${tikok.thumbnailDynamic})`}"-->
 <!--			></div>-->
-			<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background"/>
-<!--			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" ></NuxtLink>-->
+			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" >
+				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background"/>
+			</NuxtLink>
 		</figure>
 		<div class="card-body py-2 pb-3">
 			<h2 class="card-title">{{ metaData.author.nickname }}</h2>

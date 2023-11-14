@@ -1,18 +1,18 @@
-<script setup >
+<script setup lang="ts">
 
+import useStore from "~/store";
+
+const store = useStore();
 const route = useRoute()
 const url = `https://api.tik.fail/v2/search?videoID=${route.params.id}`
 // When accessing /posts/1, route.params.id will be 1
-const {data} = await useFetch(url, {key: route.params.id, server: true,
-	transform: (item) => {
-		return item.itemList[0];
-	},
-	pick: ["_tik", 'metadata']
-});
+// @ts-ignore
+const {data} = await store.fetchTikTokById(route.params.id);
+
 
 function millisToMinutesAndSeconds(millis) {
 	var minutes = Math.floor(millis / 60000);
-	var seconds = ((millis % 60000) / 1000).toFixed(0);
+	const seconds = ((millis % 60000) / 1000).toFixed(0);
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
@@ -20,7 +20,8 @@ function millisToMinutesAndSeconds(millis) {
 
 <template>
 	<main class="show-container pb-10">
-		<article class="single-item w-[380px] mx-auto mb-4">
+		<NavBar />
+		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
 			<!-- Video Item -->
 			<figure class="">
 				<video controls :src="data._tik.video" class="w-full h-auto shadow-2xl rounded"></video>
