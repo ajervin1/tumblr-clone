@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        "data-theme": 'dark',
+        "data-theme": 'light',
       },
   
     }
@@ -34,12 +34,12 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       // "Open Sans": [100,200,300,400,500,600,700],
-      // "Montserrat": [100,200,300,400,500,600,700],
+      "Montserrat": [100,200,300,400,500,600,700],
       // "Roboto": [100,200,300,400,500,600,700],
       // "Poppins": [100,200,300,400,500,600,700],
       // "Raleway": [100,200,300,400,500,600,700],
       // "Inter": [100,200,300,400,500,600,700],
-      Lato: [100,200,300,400,500,600,700],
+      // Lato: [100,200,300,400,500,600,700],
     },
     display: 'swap'
     // @ts-ignore

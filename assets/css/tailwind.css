@@ -2,10 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer components {
+	.page-heading {
+		@apply text-2xl font-semibold mb-2 tracking-wide
+	}
+	.page-subtitle {
+		@apply text-lg font-normal tracking-wide text-gray-500
+	}
+}
+
 .container {
 	max-width: 80%;
 }
 
 html {
-	font-family: "Lato";
+	font-family: "Montserrat";
+}
+/* Change BG Color */
+:root, [date-theme] {
+	background-color:  rgba(242, 242, 242, 0.1);
 }
