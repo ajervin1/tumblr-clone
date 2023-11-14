@@ -31,7 +31,6 @@ function millisToMinutesAndSeconds(millis) {
 
 <template>
 	<main class="show-container pb-10">
-		{{ description }}
 		<NavBar/>
 		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
 			<!-- Video Item -->
@@ -53,14 +52,17 @@ function millisToMinutesAndSeconds(millis) {
 						<h2 class="text-lg font-semibold text-white">{{ data.metadata.author.nickname }}</h2>
 						<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="font-semibold text-neutral-400">@{{ data.metadata.author.unique_id }}</NuxtLink>
 					</div>
-					<!-- Description -->
-					<p class="text-neutral-400 lead font-normal">{{ description }}</p>
-					<!-- Hashtags -->
-					<div class="flex flex-wrap gap-2">
-						<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
-							#{{ hash }}
-						</NuxtLink>
+					<div class="flex gap-2 flex-wrap items-center">
+						<!-- Description -->
+						<p class="text-neutral-400 lead font-normal">{{ description }}</p>
+						<!-- Hashtags -->
+						<div class="flex flex-wrap gap-2">
+							<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
+								#{{ hash }}
+							</NuxtLink>
+						</div>
 					</div>
+		
 			
 					<!-- Music Info -->
 					<div class="music flex items-center gap-1.5">
@@ -72,7 +74,7 @@ function millisToMinutesAndSeconds(millis) {
 					<div class="flex items-center justify-between text- flex-wrap=['none']">
 						<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
 						<h6>
-							<font-awesome-icon icon="fas fa-heart"/>
+							<font-awesome-icon icon="far fa-heart"/>
 							{{ data.metadata.statistics.digg_count }}
 						</h6>
 						<h6>
