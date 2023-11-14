@@ -20,9 +20,9 @@ const stats = computed(() => {
 				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background"/>
 			</NuxtLink>
 		</figure>
-		<div class="card-body py-2 pb-3">
-			<h2 class="card-title">{{ metaData.author.nickname }}</h2>
-			<p class="text-sm">{{ metaData.desc }}</p>
+		<div class="card-body py-2 pb-3 gap-1.5">
+			<h2 class="card-title p-0 m-0">{{ metaData.author.nickname }}</h2>
+			<p class="text-sm text-gray-500 m-0 p-0">{{ metaData.desc }}</p>
 			<div class="flex items-center justify-between text-xs flex-wrap=['none']">
 				<h6> {{ new Date(metaData.create_time_ISO).toLocaleDateString() }}</h6>
 				<h6>
