@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   //   }
   // },
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss',  ],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt' ],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {

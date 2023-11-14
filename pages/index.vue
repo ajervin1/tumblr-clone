@@ -1,5 +1,6 @@
 <script setup>
 import SearchForm from "~/components/SearchForm.vue";
+import useStore from "~/store.js";
 
 
 const tiktoks = ref(null);
@@ -7,7 +8,8 @@ const cursor = ref(0);
 const total = ref(null)
 const term = ref(null)
 
-
+const store = useStore();
+console.log(store.count)
 async function handleSubmit( username ) {
 	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ username }&cursor=0&sortBy=date&legacySearch=true`, {});
 	term.value = username
@@ -16,12 +18,13 @@ async function handleSubmit( username ) {
 	total.value = data.lookup.pagination.total;
 	
 }
-
 async function loadMore() {
 	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ term.value }&cursor=${ cursor.value }&sortBy=date&legacySearch=true`, {});
 	tiktoks.value = [ ...tiktoks.value, ...data.itemList ]
 	cursor.value = data.lookup.pagination.nextCursor;
 }
+
+
 
 </script>
 <template>
