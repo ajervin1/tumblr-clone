@@ -50,17 +50,16 @@ const useStore = defineStore('state', {
 					}
 				})
 			});
-			
 			if ( data.value ){
 				this.data = data.value
 			}
 			return data;
 		},
-		async fetchByHashtag(hashtagID = 'foryou', cursor = 0){
+		async searchByHashtag(hashtagName = 'foryou', cursor = 0){
 			const {data} = await useAsyncData('search-result', () => {
 				return $fetch(baseUrl, {
 					params: {
-						hashtagId: username,
+						hashtagName,
 						cursor,
 						sortBy: "date",
 						legacySearch: true,
@@ -73,19 +72,20 @@ const useStore = defineStore('state', {
 			}
 			return data;
 		},
-		async fetchByMusicId(musicID = "7300945885695954206", cursor = 0){
-			const {data} = await useAsyncData('single-tiktok', () => {
+		async searchByMusicTitle(musicTitle = 'akon', cursor = 0){
+			const {data} = await useAsyncData('search-result', () => {
 				return $fetch(baseUrl, {
 					params: {
-						musicID,
+						musicTitle,
 						cursor,
 						sortBy: "date",
-						legacySearch: true
+						legacySearch: true,
 					}
 				})
 			});
+			
 			if ( data.value ){
-				this.tiktok = data.value
+				this.data = data.value
 			}
 			return data;
 		},

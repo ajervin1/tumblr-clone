@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
 import useStore from "~/store";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const store = useStore();
 const route = useRoute()
@@ -12,11 +12,10 @@ const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,
 }
-console.log(data)
 
 function millisToMinutesAndSeconds(millis) {
-	var minutes = Math.floor(millis / 60000);
-	const seconds = ((millis % 60000) / 1000).toFixed(0);
+	const minutes = Math.floor(millis / 60000);
+	const seconds:any = ((millis % 60000) / 1000).toFixed(0);
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
@@ -57,18 +56,18 @@ function millisToMinutesAndSeconds(millis) {
 					<!-- Icons -->
 					<div class="flex items-center justify-between text- flex-wrap=['none']">
 						<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
-						<h6>
-							<font-awesome-icon icon="far fa-heart"/>
-							{{ data.metadata.statistics.digg_count }}
-						</h6>
-						<h6>
-							<font-awesome-icon icon="fas fa-play" class="mr-1"/>
-							{{ data.metadata.statistics.play_count }}
-						</h6>
-						<h6>
-							<font-awesome-icon icon="far fa-comment"/>
-							{{ data.metadata.statistics.comment_count }}
-						</h6>
+<!--						<h6>-->
+<!--							<font-awesome-icon icon="fas fa-heart"/>-->
+<!--							{{ data.metadata.statistics.digg_count }}-->
+<!--						</h6>-->
+<!--						<h6>-->
+<!--							<font-awesome-icon icon="fas fa-play" class="mr-1"/>-->
+<!--							{{ data.metadata.statistics.play_count }}-->
+<!--						</h6>-->
+<!--						<h6>-->
+<!--							<font-awesome-icon icon="fas fa-comment"/>-->
+<!--							{{ data.metadata.statistics.comment_count }}-->
+<!--						</h6>-->
 					</div>
 				</div>
 			</div>
