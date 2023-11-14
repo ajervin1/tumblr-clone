@@ -56,18 +56,18 @@ function millisToMinutesAndSeconds(millis) {
 					<!-- Icons -->
 					<div class="flex items-center justify-between text- flex-wrap=['none']">
 						<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
-<!--						<h6>-->
-<!--							<font-awesome-icon icon="fas fa-heart"/>-->
-<!--							{{ data.metadata.statistics.digg_count }}-->
-<!--						</h6>-->
-<!--						<h6>-->
-<!--							<font-awesome-icon icon="fas fa-play" class="mr-1"/>-->
-<!--							{{ data.metadata.statistics.play_count }}-->
-<!--						</h6>-->
-<!--						<h6>-->
-<!--							<font-awesome-icon icon="fas fa-comment"/>-->
-<!--							{{ data.metadata.statistics.comment_count }}-->
-<!--						</h6>-->
+						<h6>
+							<font-awesome-icon icon="fas fa-heart"/>
+							{{ data.metadata.statistics.digg_count }}
+						</h6>
+						<h6>
+							<font-awesome-icon icon="fas fa-play" class="mr-1"/>
+							{{ data.metadata.statistics.play_count }}
+						</h6>
+						<h6>
+							<font-awesome-icon icon="fas fa-comment"/>
+							{{ data.metadata.statistics.comment_count }}
+						</h6>
 					</div>
 				</div>
 			</div>

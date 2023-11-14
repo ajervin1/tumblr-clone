@@ -10,9 +10,9 @@ const store = useStore();
 <template>
 	<!-- NavBar -->
 	<header class="bg-base-300">
-		<div class="navbar container mx-auto py-3">
+		<div class="navbar container mx-auto py-3 px-0">
 			<div class="flex-1">
-				<NuxtLink class="btn btn-ghost normal-case text-xl" to="/">TikTok Flow</NuxtLink>
+				<NuxtLink class="normal-case text-xl font-semibold tracking-wider" to="/">TikTok Flow</NuxtLink>
 			</div>
 			<div class="flex-none gap-2">
 				<div class="form-control">

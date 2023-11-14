@@ -1,9 +1,10 @@
 <script setup >
+// Trending Page
 import SearchForm from "~/components/SearchForm.vue";
 import useStore from "~/store.ts";
 
 const store = useStore();
-await store.searchByUsername('iamoliviaponton');
+await store.searchByHashtag('foryou');
 
 
 

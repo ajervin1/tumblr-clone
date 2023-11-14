@@ -6,12 +6,10 @@ const store = useStore()
 
 
 
-async function handleEnter(e) {
+async function handleEnter(e : any) {
 	e.preventDefault();
-	
-	console.log(store)
-	const result = await store.searchByUsername(store.term);
-	console.log(result.value)
+	// const result = await store.searchByUsername(store.term);
+	await navigateTo(`/user/${store.term}`);
 }
 </script>
 
