@@ -1,10 +1,16 @@
 <!-- Trending Page -->
 <script setup lang="ts" type="module">
+import { Icon } from '#components'
+const MyIcon = h(Icon, { name: 'uil:twitter' })
 import useStore from "~/store";
 
 const store = useStore();
 await store.searchByHashtag('foryou');
-
+const heart = ref('heroicons:heart')
+const comment = ref('heroicons:chat-bubble-oval-left-solid')
+const play = ref('heroicons:play')
+const time = ref('heroicons:clock')
+const music = ref('heroicons:musical-note-20-solid')
 
 
 
@@ -22,6 +28,8 @@ await store.searchByHashtag('foryou');
 </script>
 <template>
 	<main class="app pb-10">
+		<Icon :name="time" size="18" />
+		
 		<NavBar />
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4">

@@ -13,7 +13,8 @@ const result = await store.searchByMusicTitle(musicName);
 </script>
 
 <template>
-	<main>
+	<main class="pb-10">
+		<NavBar />
 		<!-- Music Heading -->
 		<div class="container mx-auto py-4">
 			<h2 class="text-2xl font-semibold text-white mb-2 tracking-wide">Clips for {{ musicName }}</h2>

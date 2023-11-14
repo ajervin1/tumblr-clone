@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   //   }
   // },
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@pinia/nuxt' ],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts','nuxt-icon', '@pinia/nuxt' ],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {
