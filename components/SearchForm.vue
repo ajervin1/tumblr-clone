@@ -15,7 +15,7 @@ async function handleEnter(e : any) {
 
 <template>
 	<form @submit="handleEnter">
-		<input type="text" class="input input-bordered w-24 md:w-auto" v-model="store.term" placeholder="Search Username"/>
+		<input type="text" class="input input-bordered w-60 md:w-auto" v-model="store.term" placeholder="Search Username"/>
 	</form>
 </template>
 

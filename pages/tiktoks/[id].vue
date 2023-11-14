@@ -20,7 +20,8 @@ const hashtags = data.metadata.text_extra.map(hash => hash.hashtag_name);
 // var regexpHashtag = new RegExp(/#[a-zA-Z\d]+/g);
 var regexp = /#\S+/g;
 let description = data.metadata.desc;
-description = description.replace(regexp, '');
+description = description.replace(regexp, '').trim()
+
 function millisToMinutesAndSeconds(millis) {
 	const minutes = Math.floor(millis / 60000);
 	const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -39,22 +40,25 @@ function millisToMinutesAndSeconds(millis) {
 			</figure>
 		</article>
 		<!-- Video Meta Data -->
-		<!-- Icons -->
-		<section class="container mx-auto  w-[70%] bg-gray-700 shadow-2xl p-4 px-8">
+		
+		<section class="container mx-auto w-[70%] shadow p-4 px-8 bg-white rounded"><!-- Card Container -->
 			<div class="flex gap-10">
+				<!-- Avatar -->
 				<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="avatar-container">
 					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"
 					     class="w-36 rounded-full" alt="">
 				</NuxtLink>
 				<!-- Author Info -->
 				<div class="metadata flex flex-col justify-evenly flex-grow">
+					<!-- UserName Info -->
 					<div class="flex items-center gap-2">
-						<h2 class="text-lg font-semibold text-white">{{ data.metadata.author.nickname }}</h2>
-						<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="font-semibold text-neutral-400">@{{ data.metadata.author.unique_id }}</NuxtLink>
+						<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
+						<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium">@{{ data.metadata.author.unique_id }}</NuxtLink>
 					</div>
-					<div class="flex gap-2 flex-wrap items-center">
+					<!-- Description Hashtags -->
+					<div class="flex flex-wrap gap-2 items-center">
 						<!-- Description -->
-						<p class="text-neutral-400 lead font-normal">{{ description }}</p>
+						<p v-if="description !== ''" class="text-neutral-400 lead font-normal">{{description}}</p>
 						<!-- Hashtags -->
 						<div class="flex flex-wrap gap-2">
 							<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
@@ -62,13 +66,11 @@ function millisToMinutesAndSeconds(millis) {
 							</NuxtLink>
 						</div>
 					</div>
-		
-			
 					<!-- Music Info -->
-					<div class="music flex items-center gap-1.5">
+					<div class="music flex items-center gap-3">
 						<font-awesome-icon icon="fas fa-music "/>
-						<NuxtLink :to="`/music/${data.metadata.music.title}`" class="font-semibold text-lg text-white">{{ data.metadata.music.title }}</NuxtLink>
-						<h6 class="text-sm">> {{ data.metadata.music.author }}</h6>
+						<NuxtLink :to="`/music/${data.metadata.music.title}`" class="font-semibold text-lg tracking-wide">{{ data.metadata.music.title }} -</NuxtLink>
+						<h6 class="text-gray-500 font-medium">{{ data.metadata.music.author }}</h6>
 					</div>
 					<!-- Icons -->
 					<div class="flex items-center justify-between text- flex-wrap=['none']">
