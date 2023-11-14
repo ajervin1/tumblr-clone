@@ -35,7 +35,7 @@ async function loadMore() {
 			<div class="grid grid-cols-4 gap-8">
 				<TikTokItem v-for="tiktok in store.itemList" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
-			<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
+<!--			<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>-->
 		</section>
 	
 	

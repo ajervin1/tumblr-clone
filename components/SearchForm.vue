@@ -1,19 +1,23 @@
-<script setup >
-const term = ref('emelyelikeslemonade');
-const tiktoks = ref(null);
-const emit = defineEmits(['search'])
+<script setup lang="ts">
+import useStore from "~/store";
+
+const store = useStore()
+
+
 
 
 async function handleEnter(e) {
 	e.preventDefault();
-	emit('search', term.value);
-	term.value = "";
+	
+	console.log(store)
+	const result = await store.searchByUsername(store.term);
+	console.log(result.value)
 }
 </script>
 
 <template>
 	<form @submit="handleEnter">
-		<input type="text" class="input input-bordered w-24 md:w-auto" v-model="term" placeholder="Search Username">
+		<input type="text" class="input input-bordered w-24 md:w-auto" v-model="store.term" placeholder="Search Username"/>
 	</form>
 </template>
 

@@ -1,24 +1,36 @@
 // @ts-nocheck
 import { defineStore } from "pinia";
 const baseUrl = "https://api.tik.fail/v2/search"
-const useStore = defineStore('todos', {
+const useStore = defineStore('state', {
 	state: () => ({
+		term: "avajustin",
 		data: null,
 		tiktoks: [],
 		tiktok: null,
 	}),
 	getters: {
 		pagination: (state) => {
-			return state.data.lookup.pagination
+			if (state.data){
+				return state.data.lookup.pagination
+			}
+		
 		},
 		total(state){
-			return state.data.total
+			if (state.data){
+				return state.data.total
+			}
+		
 		},
 		itemList(state){
-			return state.data.itemList;
+			if (state.data){
+				return state.data.itemList;
+			}
 		}
 	},
 	actions: {
+		setTerm(newTerm){
+			this.term = newTerm;
+		},
 		async fetchTodos() {
 			const { data } = await useFetch('https://jsonplaceholder.typicode.com/todos');
 			console.log(data)
@@ -77,7 +89,7 @@ const useStore = defineStore('todos', {
 			}
 			return data;
 		},
-		async fetchTikTokById(videoId = "7300945885695954206", cursor = 0){
+		async fetchTikTokById(videoId = "7300945885695954206",){
 			const {data} = await useAsyncData('single-tiktok', () => {
 				return $fetch(baseUrl, {
 					params: {
@@ -88,9 +100,7 @@ const useStore = defineStore('todos', {
 			if ( data.value ){
 				this.tiktok = data.value
 			}
-			return data;
 		},
-
 		
 	},
 });

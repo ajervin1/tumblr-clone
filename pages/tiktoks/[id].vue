@@ -7,8 +7,12 @@ const route = useRoute()
 const url = `https://api.tik.fail/v2/search?videoID=${route.params.id}`
 // When accessing /posts/1, route.params.id will be 1
 // @ts-ignore
-const {data} = await store.fetchTikTokById(route.params.id);
-
+await store.fetchTikTokById(route.params.id);
+const data = {
+	_tik: store.tiktok.itemList[0]._tik,
+	metadata: store.tiktok.itemList[0].metadata,
+}
+console.log(data)
 
 function millisToMinutesAndSeconds(millis) {
 	var minutes = Math.floor(millis / 60000);
@@ -20,7 +24,8 @@ function millisToMinutesAndSeconds(millis) {
 
 <template>
 	<main class="show-container pb-10">
-		<NavBar />
+		<NavBar/>
+		
 		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
 			<!-- Video Item -->
 			<figure class="">
@@ -28,24 +33,28 @@ function millisToMinutesAndSeconds(millis) {
 			</figure>
 		</article>
 		<!-- Video Meta Data -->
-
 		<!-- Icons -->
 		<section class="container mx-auto  w-[70%] bg-gray-700 shadow-2xl p-4 px-8">
 			<div class="flex gap-10">
 				<figure class="avatar-container">
-					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`" class="w-36 rounded-full" alt="" >
+					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"
+					     class="w-36 rounded-full" alt="">
 				</figure>
+				<!-- Author Infor -->
 				<div class="metadata flex flex-col justify-evenly flex-grow">
 					<div class="flex items-center gap-2">
 						<h2 class="text-lg font-semibold text-white">{{ data.metadata.author.nickname }}</h2>
 						<h6 class="font-semibold text-neutral-400">@{{ data.metadata.author.unique_id }}</h6>
 					</div>
+					<!-- Description -->
 					<p class="text-neutral-400 lead font-normal">{{ data.metadata.desc }}</p>
+					<!-- Music Info -->
 					<div class="music flex items-center gap-1.5">
 						<font-awesome-icon icon="fas fa-music "/>
 						<h2 class="font-semibold text-lg text-white">{{ data.metadata.music.title }}</h2>
 						<h6 class="text-sm">> {{ data.metadata.music.author }}</h6>
 					</div>
+					<!-- Icons -->
 					<div class="flex items-center justify-between text- flex-wrap=['none']">
 						<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
 						<h6>
@@ -61,16 +70,10 @@ function millisToMinutesAndSeconds(millis) {
 							{{ data.metadata.statistics.comment_count }}
 						</h6>
 					</div>
-				
 				</div>
-				
-				<!--				<pre>{{ data.metadata}}</pre>-->
-<!--				<p>Description {{ data.metadata.desc }}</p>-->
-
-<!--				<h2>Music Duration {{ data.metadata.music.duration }}</h2>-->
 			</div>
-		
 		</section>
+		<!-- Video Meta Data -->
 	</main>
 </template>
 

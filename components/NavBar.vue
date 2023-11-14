@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import SearchForm from "~/components/SearchForm.vue";
+import useStore from "~/store";
+
+const store = useStore();
 
 
-// async function handleSubmit( username ) {
-// 	const data = await $fetch(`https://api.tik.fail/v2/search?usernames=${ username }&cursor=0&sortBy=date&legacySearch=true`, {});
-// 	term.value = username
-// 	tiktoks.value = data.itemList;
-// 	cursor.value = data.lookup.pagination.nextCursor;
-// 	total.value = data.lookup.pagination.total;
-// }
 </script>
 
 <template>
@@ -20,7 +16,7 @@ import SearchForm from "~/components/SearchForm.vue";
 			</div>
 			<div class="flex-none gap-2">
 				<div class="form-control">
-<!--					<SearchForm @search="handleSubmit"/>-->
+					<SearchForm/>
 				</div>
 				<!-- Avatar -->
 				<button tabindex="0" class="btn btn-ghost btn-circle avatar">
