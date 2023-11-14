@@ -9,6 +9,12 @@ import useStore from "~/store";
 
 const store = useStore();
 const route = useRoute()
+useHead({
+	title:  "Nuxt Dojo",
+	meta: [
+		{name: "description", content: "TikTok Item"}
+	]
+})
 
 await store.fetchTikTokById(route.params.id);
 const data = {
@@ -33,14 +39,15 @@ function millisToMinutesAndSeconds(millis) {
 <template>
 	<main class="show-container pb-10">
 		<NavBar/>
+		<!-- Video Item -->
 		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
 			<!-- Video Item -->
 			<figure class="">
 				<video controls :src="data._tik.video" class="w-full h-auto shadow-2xl rounded"></video>
 			</figure>
 		</article>
+		<!-- Video Item End -->
 		<!-- Video Meta Data -->
-		
 		<section class="container mx-auto w-[70%] shadow p-4 px-8 bg-white rounded"><!-- Card Container -->
 			<div class="flex gap-10">
 				<!-- Avatar -->
@@ -49,7 +56,7 @@ function millisToMinutesAndSeconds(millis) {
 					     class="w-36 rounded-full" alt="">
 				</NuxtLink>
 				<!-- Author Info -->
-				<div class="metadata flex flex-col justify-evenly flex-grow">
+				<div class="metadata flex flex-col justify-evenly flex-grow gap-4">
 					<!-- UserName Info -->
 					<div class="flex items-center gap-2">
 						<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>

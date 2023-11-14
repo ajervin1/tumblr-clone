@@ -25,6 +25,13 @@ export default defineNuxtConfig({
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {
     head: {
+      title: "TikTok Clone",
+      meta: [
+        {name: "description", content: "Everything about nuext 3"}
+      ],
+      link: [
+      
+      ],
       htmlAttrs: {
         "data-theme": 'light',
       },

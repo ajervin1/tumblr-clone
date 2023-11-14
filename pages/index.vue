@@ -1,8 +1,18 @@
 <!-- Trending Page -->
 <script setup lang="ts" >
-import useStore from "~/store.js";
+
+import useStore from "~/store";
+import {definePageMeta} from "#imports";
+
+definePageMeta({
+	layout: "tiktoks",
+})
+
 const store = useStore();
-await store.searchByHashtag('foryou');
+// await store.searchByHashtag('foryou');
+
+const {data} = await useFetch('/api/ninja');
+
 
 
 
@@ -16,12 +26,12 @@ await store.searchByHashtag('foryou');
 
 async function loadMore() {
 	await store.searchByHashtag('foryou', store.pagination.nextCursor);
-	
 }
 
 </script>
 <template>
 	<main class="app pb-10 bg-base-200/10">
+		{{ data.itemList[0]._tik }}
 		<NavBar />
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4">
@@ -31,7 +41,7 @@ async function loadMore() {
 	
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
-			<div class="grid grid-cols-4 gap-8 2xl:grid-cols-4 xl:grid-cols-3 desktop:grid-cols-2 tablet:grid-cols-2 phone:grid-cols-1">
+			<div class="super-grid">
 				<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
 			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>

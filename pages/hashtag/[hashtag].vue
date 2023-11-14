@@ -10,23 +10,25 @@ const store = useStore();
 const route = useRoute();
 const {hashtag}: any = route.params
 const result = await store.searchByHashtag(hashtag);
+
+async function loadMore() {
+	await store.searchByHashtag(hashtag, store.pagination.nextCursor);
+}
 </script>
 
 <template>
 	<main>
 		<!-- HashTag Heading -->
 		<div class="container mx-auto py-4">
-			<h2 class="text-2xl font-semibold text-white mb-2 tracking-wide">Tiktoks for #{{ hashtag }}</h2>
-			<p class="leading-relaxed text-lg">Display amount of results for hashtag</p>
+			<h2 class="page-heading">Tiktoks for #{{ hashtag }}</h2>
+			<h6 class="page-subtitle">Display amount of results for hashtag</h6>
 		</div>
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
 			<div class="grid grid-cols-4 gap-8">
 				<TikTokItem v-for="tiktok in store.itemList" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
-			<!--
-						<button v-if="tiktoks" class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
-			-->
+			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
 		</section>
 	
 	</main>

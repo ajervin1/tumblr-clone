@@ -10,6 +10,9 @@
 	.page-subtitle {
 		@apply text-lg font-normal tracking-wide text-gray-500
 	}
+	.super-grid {
+		@apply grid grid-cols-4 gap-8 2xl:grid-cols-4 xl:grid-cols-3 desktop:grid-cols-2 tablet:grid-cols-2 phone:grid-cols-1
+	}
 }
 
 .container {

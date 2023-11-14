@@ -10,6 +10,9 @@ const metaData = computed(() => {
 })
 const stats = computed(() => {
 	return data.metadata.statistics;
+});
+const isLongText = computed(() => {
+	return data.metadata.desc.length >= 20;
 })
 </script>
 
@@ -22,7 +25,7 @@ const stats = computed(() => {
 		</figure>
 		<div class="card-body py-2 pb-3 gap-1.5">
 			<h2 class="card-title p-0 m-0">{{ metaData.author.nickname }}</h2>
-			<p class="text-sm text-gray-500 m-0 p-0">{{ metaData.desc }}</p>
+			<p class="card-text text-sm text-gray-500 m-0 p-0">{{ metaData.desc.slice(0, 40)}} {{ isLongText ? "..." : "" }}</p>
 			<div class="flex items-center justify-between text-xs flex-wrap=['none']">
 				<h6> {{ new Date(metaData.create_time_ISO).toLocaleDateString() }}</h6>
 				<h6>
@@ -45,6 +48,10 @@ const stats = computed(() => {
 </template>
 
 <style scoped>
+.card-text {
+
+
+}
 .bg-image {
 	background-repeat: no-repeat;
 	right: 0;
