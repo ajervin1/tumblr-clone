@@ -10,9 +10,9 @@ import useStore from "~/store";
 const store = useStore();
 const route = useRoute()
 useHead({
-	title:  "Nuxt Dojo",
+	title: "Nuxt Dojo",
 	meta: [
-		{name: "description", content: "TikTok Item"}
+		{ name: "description", content: "TikTok Item" }
 	]
 })
 
@@ -28,7 +28,7 @@ var regexp = /#\S+/g;
 let description = data.metadata.desc;
 description = description.replace(regexp, '').trim()
 
-function millisToMinutesAndSeconds(millis) {
+function millisToMinutesAndSeconds( millis ) {
 	const minutes = Math.floor(millis / 60000);
 	const seconds = ((millis % 60000) / 1000).toFixed(0);
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
@@ -39,70 +39,93 @@ function millisToMinutesAndSeconds(millis) {
 <template>
 	<main class="show-container pb-10">
 		<NavBar/>
-		<!-- Video Item -->
-		<article class="single-item w-[380px] mx-auto mb-4 pt-4">
-			<!-- Video Item -->
-			<figure class="">
-				<video controls :src="data._tik.video" class="w-full h-auto shadow-2xl rounded"></video>
-			</figure>
-		</article>
-		<!-- Video Item End -->
-		<!-- Video Meta Data -->
-		<section class="container mx-auto w-[70%] shadow p-4 px-8 bg-white rounded"><!-- Card Container -->
-			<div class="flex gap-10">
-				<!-- Avatar -->
-				<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="avatar-container">
-					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"
-					     class="w-36 rounded-full" alt="">
-				</NuxtLink>
-				<!-- Author Info -->
-				<div class="metadata flex flex-col justify-evenly flex-grow gap-4">
-					<!-- UserName Info -->
-					<div class="flex items-center gap-2">
-						<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
-						<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium">@{{ data.metadata.author.unique_id }}</NuxtLink>
-					</div>
-					<!-- Description Hashtags -->
-					<div class="flex flex-wrap gap-2 items-center">
-						<!-- Description -->
-						<p v-if="description !== ''" class="text-neutral-400 lead font-normal">{{description}}</p>
-						<!-- Hashtags -->
-						<div class="flex flex-wrap gap-2">
-							<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
-								#{{ hash }}
-							</NuxtLink>
+		<section class="container mx-auto pt-5">
+			<!-- Grid Container -->
+			<div class="grid grid-cols-2 gap-10">
+				<!-- Video Item -->
+				<article class="single-item rounded-3xl">
+					<!-- Video Item -->
+					<figure class="w-[55%] mx-auto">
+						<video controls :src="data._tik.video" class="w-full h-auto shadow-2xl rounded"></video>
+					</figure>
+				</article>
+				<!-- Video Meta Data -->
+				<section class="">
+					<div class="flex gap-10 shadow bg-white p-4">
+						<!-- Avatar -->
+						<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="avatar-container">
+							<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"
+							     class="w-36 rounded-full" alt="">
+						</NuxtLink>
+						<!-- Author Info -->
+						<div class="metadata flex flex-col justify-evenly flex-grow gap-4">
+							<!-- UserName Info -->
+							<div class="flex items-center gap-2">
+								<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
+								<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium">
+									@{{ data.metadata.author.unique_id }}
+								</NuxtLink>
+							</div>
+							<!-- Description Hashtags -->
+							<div class="flex flex-wrap gap-2 items-center">
+								<!-- Description -->
+								<p v-if="description !== ''" class="text-neutral-400 lead font-normal">{{ description }}</p>
+								<!-- Hashtags -->
+								<div class="flex flex-wrap gap-2">
+									<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
+										#{{ hash }}
+									</NuxtLink>
+								</div>
+							</div>
+							<!-- Music Info -->
+							<div class="music flex items-center gap-3">
+								<font-awesome-icon icon="fas fa-music "/>
+								<NuxtLink :to="`/music/${data.metadata.music.title}`"
+								          class="font-semibold text-lg tracking-wide">{{ data.metadata.music.title }} -
+								</NuxtLink>
+								<h6 class="text-gray-500 font-medium">{{ data.metadata.music.author }}</h6>
+							</div>
+							<!-- Icons -->
+							<div class="flex items-center justify-between text- flex-wrap=['none']">
+								<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
+								<h6>
+									<font-awesome-icon icon="far fa-heart"/>
+									{{ data.metadata.statistics.digg_count }}
+								</h6>
+								<h6>
+									<font-awesome-icon icon="fas fa-play" class="mr-1"/>
+									{{ data.metadata.statistics.play_count }}
+								</h6>
+								<h6>
+									<font-awesome-icon icon="fas fa-comment"/>
+									{{ data.metadata.statistics.comment_count }}
+								</h6>
+							</div>
 						</div>
 					</div>
-					<!-- Music Info -->
-					<div class="music flex items-center gap-3">
-						<font-awesome-icon icon="fas fa-music "/>
-						<NuxtLink :to="`/music/${data.metadata.music.title}`" class="font-semibold text-lg tracking-wide">{{ data.metadata.music.title }} -</NuxtLink>
-						<h6 class="text-gray-500 font-medium">{{ data.metadata.music.author }}</h6>
-					</div>
-					<!-- Icons -->
-					<div class="flex items-center justify-between text- flex-wrap=['none']">
-						<h6> {{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}</h6>
-						<h6>
-							<font-awesome-icon icon="far fa-heart"/>
-							{{ data.metadata.statistics.digg_count }}
-						</h6>
-						<h6>
-							<font-awesome-icon icon="fas fa-play" class="mr-1"/>
-							{{ data.metadata.statistics.play_count }}
-						</h6>
-						<h6>
-							<font-awesome-icon icon="fas fa-comment"/>
-							{{ data.metadata.statistics.comment_count }}
-						</h6>
-					</div>
-				</div>
+				</section>
+				<!-- Video Meta Data -->
 			</div>
 		</section>
-		<!-- Video Meta Data -->
+		
+		<!-- Video Item -->
+		
+		<!-- Video Item End -->
+	
 	</main>
 </template>
 
 <style scoped>
+.single-item {
+	box-shadow: 0 0 4px red;
+	background: #222;
+	background-image: url("http://localhost:3000/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	width: 100%;
+	height: 100%;
+}
 .show-container {
 	min-height: 100vh;
 }

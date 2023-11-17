@@ -24,5 +24,5 @@ html {
 }
 /* Change BG Color */
 :root, [date-theme] {
-	background-color:  rgba(242, 242, 242, 0.20);
+	background-color:  rgb(241 245 249)
 }

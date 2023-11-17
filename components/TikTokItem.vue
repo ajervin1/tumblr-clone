@@ -17,7 +17,7 @@ const isLongText = computed(() => {
 </script>
 
 <template>
-	<div class="card shadow-xl " :key="tikok.id">
+	<div class="card shadow-xl bg-white" :key="tikok.id">
 		<figure class="h-[375px] relative">
 			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
 				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background"/>

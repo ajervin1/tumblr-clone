@@ -2,25 +2,10 @@
 <script setup lang="ts" >
 
 import useStore from "~/store";
-import {definePageMeta} from "#imports";
 
-definePageMeta({
-	layout: "tiktoks",
-})
 
 const store = useStore();
-// await store.searchByHashtag('foryou');
-
-const {data} = await useFetch('/api/ninja');
-
-
-
-
-
-
-
-
-
+await store.searchByHashtag('foryou');
 
 
 
@@ -31,7 +16,6 @@ async function loadMore() {
 </script>
 <template>
 	<main class="app pb-10 bg-base-200/10">
-		{{ data.itemList[0]._tik }}
 		<NavBar />
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4">
