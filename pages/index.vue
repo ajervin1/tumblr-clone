@@ -1,6 +1,11 @@
 <!-- Trending Page -->
 <script setup lang="ts" >
-
+useHead({
+	title: `TikTokFlow | Trending TikToks`,
+	meta: [
+		{ name: "description", content: "Trending TikToks" }
+	]
+})
 import useStore from "~/store";
 
 

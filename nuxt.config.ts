@@ -3,13 +3,6 @@
 // @ts-ignore
 // @ts-ignore
 export default defineNuxtConfig({
-  webpack: {
-    loaders: {
-      vue: {
-        hotReload: true,
-      }
-    }
-  },
   typescript: {
     strict: false,
   },

@@ -28,6 +28,14 @@ var regexp = /#\S+/g;
 let description = data.metadata.desc;
 description = description.replace(regexp, '').trim()
 
+useHead({
+	title: `${data.metadata.author.unique_id} | ${description}`,
+	meta: [
+		{ name: "description", content: "TikTok Item" }
+	]
+})
+
+
 function millisToMinutesAndSeconds( millis ) {
 	const minutes = Math.floor(millis / 60000);
 	const seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -62,7 +70,7 @@ function millisToMinutesAndSeconds( millis ) {
 							<!-- UserName Info -->
 							<div class="flex items-center gap-2">
 								<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
-								<NuxtLink to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium">
+								<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium hover:text-blue-500">
 									@{{ data.metadata.author.unique_id }}
 								</NuxtLink>
 							</div>
@@ -72,16 +80,17 @@ function millisToMinutesAndSeconds( millis ) {
 								<p v-if="description !== ''" class="text-neutral-400 lead font-normal">{{ description }}</p>
 								<!-- Hashtags -->
 								<div class="flex flex-wrap gap-2">
-									<NuxtLink class="text-blue-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
+									<NuxtLink class="text-blue-500 hover:text-gray-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
 										#{{ hash }}
 									</NuxtLink>
 								</div>
 							</div>
 							<!-- Music Info -->
 							<div class="music flex items-center gap-3">
-								<font-awesome-icon icon="fas fa-music "/>
 								<NuxtLink :to="`/music/${data.metadata.music.title}`"
-								          class="font-semibold text-lg tracking-wide">{{ data.metadata.music.title }} -
+								          class="font-semibold text-lg tracking-wide hover:text-blue-500">
+									<font-awesome-icon icon="fas fa-music "/>
+									{{ data.metadata.music.title }} -
 								</NuxtLink>
 								<h6 class="text-gray-500 font-medium">{{ data.metadata.music.author }}</h6>
 							</div>
