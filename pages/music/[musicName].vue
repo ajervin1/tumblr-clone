@@ -9,16 +9,36 @@ import useStore from "~/store";
 const store = useStore();
 const route = useRoute();
 const {musicName}: any = route.params;
-const result = await store.searchByMusicTitle(musicName);
+const triggerEl = ref();
+const timer = ref()
+const fetchingData = ref(false);
 async function loadMore() {
 	await store.searchByMusicTitle(musicName, store.pagination.nextCursor);
 }
-
+function observeLoadMore() {
+	const observer = new IntersectionObserver((entries) => {
+		if (entries[0].isIntersecting) {
+			fetchingData.value = true;
+			clearTimeout(timer.value);
+			timer.value = setTimeout(() => {
+				loadMore();
+			}, 300)
+			// loadMore()
+		}
+	}, {threshold: 1})
+	observer.observe(triggerEl.value)
+}
+await store.searchByMusicTitle(musicName);
 const tiktok = store.data.itemList[0];
+
+
+onMounted(() => {
+	observeLoadMore();
+})
 </script>
 
 <template>
-	<main class="pb-10">
+	<main class="show-page pb-10">
 		<NavBar/>
 		<!-- Music Heading -->
 		<div class="container mx-auto py-4">
@@ -39,7 +59,17 @@ const tiktok = store.data.itemList[0];
 			</div>
 			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
 		</section>
-	
+		<!-- Trigger Element For Load More Intersection Observer-->
+		<div ref="triggerEl"></div>
+		<div class="container mx-auto text-center py-4">
+			<Icon
+				 v-if="fetchingData"
+				 name="line-md:loading-alt-loop"
+				 color="#ff731d"
+				 width="60"
+				 height="60"
+			/>
+		</div>
 	</main>
 </template>
 

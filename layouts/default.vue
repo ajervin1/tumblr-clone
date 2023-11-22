@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<main class="app min-h-screen bg-gray-100">
+	<div class="app min-h-screen bg-gray-100">
 		<!-- NavBar -->
 		<NavBar/>
 		<!-- Main Content Will Go Here -->
@@ -32,7 +32,7 @@
 			
 			</div>
 		</footer>
-	</main>
+	</div>
 </template>
 
 <style scoped>

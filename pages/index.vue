@@ -1,28 +1,26 @@
 <!-- Trending Page -->
 <script setup lang="ts">
+// Imports at top
+import useStore from "~/store";
+// Use functions here
 useHead({
 	title: `TikTokFlow | Trending TikToks`,
 	meta: [
 		{name: "description", content: "Trending TikToks"}
 	]
 })
-import useStore from "~/store";
-
-
 const store = useStore();
-await store.searchByHashtag('foryou');
-
+const {sayHello} = useHelpers();
+// State Here
+const triggerEl = ref();
+const timer = ref()
 const fetchingData = ref(false);
-
+// Functions Here
 async function loadMore() {
 	
 	await store.searchByHashtag('foryou', store.pagination.nextCursor);
 	fetchingData.value = false;
 }
-
-const triggerEl = ref();
-const timer = ref()
-
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
 		if (entries[0].isIntersecting) {
@@ -37,12 +35,16 @@ function observeLoadMore() {
 	observer.observe(triggerEl.value)
 }
 
+// Run Code Here
+await store.searchByHashtag('foryou');
+
+// Dom Code here
 onMounted(() => {
-	// observeLoadMore();
+	observeLoadMore();
 })
 </script>
 <template>
-	<main class="app min-h-screen bg-gray-100">
+	<main class="home-page">
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4 max-w-screen space-y-1">
 			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
@@ -71,9 +73,7 @@ onMounted(() => {
 				 height="60"
 			/>
 		</div>
-	
 	</main>
-	
 </template>
 <style>
 .list-enter-active,

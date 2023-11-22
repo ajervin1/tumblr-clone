@@ -29,7 +29,7 @@ let description = data.metadata.desc;
 description = description.replace(regexp, '').trim()
 
 useHead({
-	title: `${data.metadata.author.unique_id} | ${description}`,
+	title: `${ data.metadata.author.unique_id } | ${ description }`,
 	meta: [
 		{ name: "description", content: "TikTok Item" }
 	]
@@ -45,8 +45,8 @@ function millisToMinutesAndSeconds( millis ) {
 </script>
 
 <template>
-	<main class="show-container pb-10">
-		<NavBar/>
+	<main class="show-page pb-10">
+	
 		<section class="container mx-auto pt-5">
 			<!-- Grid Container -->
 			<div class="grid grid-cols-2 gap-10">
@@ -70,7 +70,8 @@ function millisToMinutesAndSeconds( millis ) {
 							<!-- UserName Info -->
 							<div class="flex items-center gap-2">
 								<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
-								<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="text-gray-500 font-medium hover:text-blue-500">
+								<NuxtLink :to="`/user/${data.metadata.author.unique_id}`"
+								          class="text-gray-500 font-medium hover:text-blue-500">
 									@{{ data.metadata.author.unique_id }}
 								</NuxtLink>
 							</div>
@@ -80,7 +81,8 @@ function millisToMinutesAndSeconds( millis ) {
 								<p v-if="description !== ''" class="text-neutral-400 lead font-normal">{{ description }}</p>
 								<!-- Hashtags -->
 								<div class="flex flex-wrap gap-2">
-									<NuxtLink class="text-blue-500 hover:text-gray-500" v-for="hash in hashtags" :to="`/hashtag/${hash}`">
+									<NuxtLink class="text-blue-500 hover:text-gray-500" v-for="hash in hashtags"
+									          :to="`/hashtag/${hash}`">
 										#{{ hash }}
 									</NuxtLink>
 								</div>
@@ -117,10 +119,6 @@ function millisToMinutesAndSeconds( millis ) {
 			</div>
 		</section>
 		
-		<!-- Video Item -->
-		
-		<!-- Video Item End -->
-	
 	</main>
 </template>
 
@@ -131,10 +129,11 @@ function millisToMinutesAndSeconds( millis ) {
 	background-image: url("http://localhost:3000/background.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-
+	
 	width: 100%;
 	height: 100%;
 }
+
 .show-container {
 	min-height: 100vh;
 }
