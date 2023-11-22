@@ -1,13 +1,23 @@
 <!-- Trending Page -->
 <script setup lang="ts">
 // Imports at top
+const config = useRuntimeConfig()
 import useStore from "~/store";
 import LoadingIcon from "~/components/LoadingIcon.vue";
 // Use functions here
 useHead({
-	title: `TikTokFlow | Trending TikToks`,
+	// charset: 'utf-8',
+	// viewport: 'width=device-width, initial-scale=1',
+	link: [
+		{
+			rel: "canonical",
+			href: config.baseUrl
+		}
+	],
+	title: `TikTok Online Viewer - TikTokFlow`,
 	meta: [
-		{name: "description", content: "Trending TikToks"}
+		{name: "description", content: "New expirience with anonymous TikTok Viewer. Discover trending videos, viral content and talented creators. Explore TikTok videos privately without account and app"},
+		{name: "keywords", content: "tiktok online, tiktok viewer, tiktok viral, tiktok anonymous, tiktokflow, tiktokflow.com"  }
 	]
 })
 const store = useStore();
@@ -16,12 +26,14 @@ const {sayHello} = useHelpers();
 const triggerEl = ref();
 const timer = ref()
 const fetchingData = ref(false);
+
 // Functions Here
 async function loadMore() {
 	
 	await store.searchByHashtag('foryou', store.pagination.nextCursor);
 	fetchingData.value = false;
 }
+
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
 		if (entries[0].isIntersecting) {
@@ -46,16 +58,16 @@ onMounted(() => {
 </script>
 <template>
 	<main class="home-page">
-	
+		<SeoKit/>
 		<!-- Trending Heading -->
-		<div class="container mx-auto py-6 space-y-1" >
+		<div class="container mx-auto py-6 space-y-1">
 			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
 			<p class="text-gray-500">Stay up to date with the latest viral trends that are sweeping across TikTok</p>
 		</div>
 		
 		
 		<!-- Main Content -->
-		<ItemList />
+		<ItemList/>
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">

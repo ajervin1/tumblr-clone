@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 const baseUrl = "https://api.tik.fail/v2/search"
 const useStore = defineStore('state', {
 	state: () => ({
-		term: "iamoliviaponton",
+		term: "",
 		data: null,
 		tiktoks: [],
 		tiktok: null,

@@ -16,7 +16,7 @@ const store = useStore();
 					<img class="w-auto h-8 mt-1 ml-2" src="https://clipr.xyz/img/logo/default-monochrome-white.svg" alt="Clipr">
 				</NuxtLink>
 			</div>
-			<div class="space-x-8 lg:flex">
+<!--			<div class="space-x-8 lg:flex">
 				<a href="https://clipr.xyz" class="text-base font-medium text-white hover:text-gray-300">
 					Home
 				</a>
@@ -32,7 +32,7 @@ const store = useStore();
 				<a href="https://clipr.xyz/donate" class="text-base font-medium text-white hover:text-gray-300">
 					Donate
 				</a>
-			</div>
+			</div>-->
 			<div class="flex-none gap-2">
 				<div class="form-control">
 					<SearchForm/>
