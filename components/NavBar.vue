@@ -12,7 +12,9 @@ const store = useStore();
 	<header class="bg-base-100 shadow">
 		<div class="navbar container mx-auto py-3 px-0">
 			<div class="flex-1">
-				<NuxtLink class="uppercase text-xl font-bold tracking-wider" to="/">TikTok Flow</NuxtLink>
+				<NuxtLink class="uppercase text-xl font-bold tracking-wider" to="/">
+					<img class="w-[75px] h-[75px]" src="https://www.webdevdaily.io/_vercel/image?url=/images/webdevdaily_logo.png&w=320&q=100" alt="">
+				</NuxtLink>
 			</div>
 			<div class="flex-none gap-2">
 				<div class="form-control">

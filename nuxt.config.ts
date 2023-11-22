@@ -34,14 +34,20 @@ export default defineNuxtConfig({
   googleFonts: {
     families: {
       // "Open Sans": [100,200,300,400,500,600,700],
-      "Montserrat": [100,200,300,400,500,600,700],
       // "Roboto": [100,200,300,400,500,600,700],
       // "Poppins": [100,200,300,400,500,600,700],
       // "Raleway": [100,200,300,400,500,600,700],
       // "Inter": [100,200,300,400,500,600,700],
-      // Lato: [100,200,300,400,500,600,700],
+      Lato: [300,400,500,600,700],
     },
-    display: 'swap'
+    subsets: ['latin'],
+    display: 'swap',
+    prefetch: false,
+    preconnect: false,
+    preload: false,
+    download: true,
+    base64: false,
+    
     // @ts-ignore
     // "Open Sans": true,
   }

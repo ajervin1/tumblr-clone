@@ -18,15 +18,19 @@ async function loadMore() {
 
 <template>
 	<main>
+		<NavBar />
 		<!-- HashTag Heading -->
 		<div class="container mx-auto py-4">
-			<h2 class="page-heading">Tiktoks for #{{ hashtag }}</h2>
-			<h6 class="page-subtitle">Display amount of results for hashtag</h6>
+			<div class="bg-white items-center shadow p-4 rounded">
+				<h2 class="page-heading text-3xl">Tiktoks for #{{ hashtag }}</h2>
+				<h6 class="page-subtitle">There are {{ store.data.total}} number of tiktoks with this hashtag</h6>
+			</div>
+			
 		</div>
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
 			<div class="grid grid-cols-4 gap-8">
-				<TikTokItem v-for="tiktok in store.itemList" :tiktok="tiktok" :key="tiktok._tik.id"/>
+				<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 			</div>
 			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
 		</section>

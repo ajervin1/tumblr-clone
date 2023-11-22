@@ -14,6 +14,7 @@ async function loadMore() {
 	await store.searchByMusicTitle(musicName, store.pagination.nextCursor);
 }
 
+const tiktok = store.data.itemList[0];
 </script>
 
 <template>
@@ -21,9 +22,16 @@ async function loadMore() {
 		<NavBar/>
 		<!-- Music Heading -->
 		<div class="container mx-auto py-4">
-			<h2 class="page-heading">Clips for {{ musicName }}</h2>
-			<h6 class="page-subtitle">Display the audio track</h6>
+			<div class="bg-white items-center shadow p-4 rounded">
+				<h2 class="page-heading text-3xl">{{ musicName }}</h2>
+				<h6 class="page-subtitle mb-5">There are {{ store.data.total}} number of tiktoks with this sound</h6>
+			
+				<audio controls :src="tiktok.metadata.music.play_url.uri" />
+				
+			</div>
+		
 		</div>
+		
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
 			<div class="super-grid">
