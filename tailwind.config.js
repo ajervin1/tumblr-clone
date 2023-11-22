@@ -27,9 +27,11 @@ module.exports = {
 		utils: true,
 		themes: ["light", "dark", "cupcake", 'dracula'],
 	},
+
 	plugins: [
 
 		require('daisyui'),
+		require('@tailwindcss/aspect-ratio'),
 	],
 
 

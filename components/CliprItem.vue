@@ -1,4 +1,6 @@
 <script setup>
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+
 import { computed } from 'vue'
 
 function millisToMinutesAndSeconds( millis ) {
@@ -28,57 +30,58 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 
 <template>
 	
-	<div
-		 class="tiktok-card card shadow-lg cursor-pointer overflow-hidden rounded-md ease-in-out duration-200 hover:scale-[1.04] hover:shadow-xl relative"
-		 :key="tikok.id">
-		<figure class="h-[200px] relative">
-			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
-				<!--				<div class="skeleton background tiktok-image"></div>-->
-				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background tiktok-image"/>
-				
-				<div class="hover-bg relative">
-					<span class="tiktok-badge border-0 badge bg-slate-900 text-white opacity-90 font-medium text-xs">{{
-							duration
-						}}</span>
-				</div>
-			
-			</NuxtLink>
+	<div class="flex flex-col overflow-hidden shadow rounded-xl bg-white">
+		<figure class="relative aspect-w-1 aspect-h-1" style="/*! background: blue; */">
+			<a href="https://clipr.xyz/TenuousPlumpCatChocolateRain-kz2VneHtu5oL7PTJ">
+				<img :src="tikok.thumbnailDynamic" alt="Shoes"
+				     class="absolute w-full h-full object-cover inset-0 rounded-lg"/>
+			</a>
 		</figure>
-		<div class="card-body py-2 pb-3 gap-1.5 bg-white">
-			<h2 class="card-title p-0 m-0">{{ metaData.author.nickname }}</h2>
-			<p class="card-text text-sm text-gray-500 m-0 p-0">
-				{{ metaData.desc.slice(0, 40) }} {{
-					isLongText ? "..." : "" }}</p>
-			<Transition>
-				<div class="flex items-center justify-between text-xs flex-wrap=['none']">
-					<h6> {{ new Date(metaData.create_time_ISO).toLocaleDateString() }}</h6>
-					<h6>
-						<font-awesome-icon icon="far fa-heart"/>
-						{{ stats?.digg_count }}
-					</h6>
-					<h6>
-						<font-awesome-icon icon="fas fa-play" class="mr-1"/>
-						{{ stats?.play_count }}
-					</h6>
-					<h6>
-						<font-awesome-icon icon="far fa-comment"/>
-						{{ stats?.comment_count }}
-					</h6>
+		<div class="flex flex-col justify-between flex-1">
+			<div class="flex-1">
+				<div class="p-4 space-y-1">
+					<h2 class="text-lg font-semibold tracking-tight truncate">
+						<a href="https://clipr.xyz/TenuousPlumpCatChocolateRain-kz2VneHtu5oL7PTJ">
+							{{ metaData.desc.slice(0, 40) }} {{
+								isLongText ? "..." : "" }}
+						</a>
+					</h2>
+					<!-- Play Count and Duration -->
+					<h3 class="text-gray-500">
+						<div class="relative">
+							<div class="absolute -inset-x-2 bottom-14">
+								<div class="flex justify-between">
+									<span
+										 class="inline-flex gap-1 items-center justify-center font-semibold tracking-tight rounded-full h-6 px-2 text-sm text-white bg-black/80">
+										<Icon name="mdi:play" class="w-4 h-4 text-white "/>
+										<span>{{ stats?.digg_count }}</span>
+									</span>
+									<span
+										 class="inline-flex items-center justify-center font-semibold tracking-tight rounded-full h-6 px-2 text-sm text-white bg-black/80">
+										<span>{{ duration }}</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-sm">
+							<span class="font-semibold">{{ metaData.author.nickname }}</span>
+							<br>
+							{{ metaData.author.unique_id }}
+							<span aria-hidden="true">·</span>
+							{{ formatDistance(new Date(), new Date(metaData.create_time_ISO)) }}
+						
+						</div>
+					</h3>
 				</div>
-			</Transition>
-		
+			</div>
 		</div>
-	
-	
 	</div>
 </template>
 
 <style scoped>
-.tiktok-card {
-	/*	padding-top: 80%;*/
-	height: 275px;
-}
 
+
+/*
 figure {
 	position: absolute;
 	left: 0px;
@@ -86,6 +89,7 @@ figure {
 	width: 100%;
 	height: 100%;
 }
+*/
 
 .tiktok-image {
 	display: block;

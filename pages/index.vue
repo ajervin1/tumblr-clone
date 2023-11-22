@@ -42,7 +42,7 @@ onMounted(() => {
 })
 </script>
 <template>
-	<main class="app min-h-screen">
+	<main class="app min-h-screen bg-gray-100">
 		<NavBar/>
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4 max-w-screen space-y-1">
@@ -53,9 +53,9 @@ onMounted(() => {
 		
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
-			<div class="tiktok-grid">
+			<div class="grid gap-4 md:gap-6 md:grid-cols-2 xl:grid-cols-3 grid-cols-5 tablet:grid-cols-2 phone:grid-cols-1">
 				<TransitionGroup name="list">
-					<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
+					<CliprItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 				</TransitionGroup>
 			</div>
 			<!--			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>-->
@@ -119,4 +119,5 @@ onMounted(() => {
 	grid-gap: 24px 16px;
 	grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
 }
+
 </style>

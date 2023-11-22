@@ -27,6 +27,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@pinia/nuxt": "^0.5.1",
+    "date-fns": "^2.30.0",
     "nuxt-icon": "^0.6.5",
     "pinia": "^2.1.7"
   }
