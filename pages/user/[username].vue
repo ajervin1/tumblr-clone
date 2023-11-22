@@ -5,6 +5,7 @@
 * */
 import useStore from "~/store";
 import CardItem from "~/components/CardItem.vue";
+import LoadingIcon from "~/components/LoadingIcon.vue";
 const store = useStore();
 const route = useRoute();
 const {username}: any = route.params;
@@ -43,7 +44,7 @@ onMounted(() => {
 	<main class="user-page pb-10">
 		<!-- Username Heading -->
 		<div class="container mx-auto py-4">
-			<div class="bg-white flex gap-10 items-center shadow p-4 rounded">
+			<div class="bg-white flex gap-10 items-center shadow p-4 rounded-xl">
 				<NuxtLink :to="`/user/${singleTok.metadata.author.unique_id}`" class="avatar-container">
 					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${singleTok.metadata.author.unique_id}.jpeg`"
 					     class="w-36 rounded shadow" alt="">
@@ -62,13 +63,7 @@ onMounted(() => {
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">
-			<Icon
-				 v-if="fetchingData"
-				 name="line-md:loading-alt-loop"
-				 color="#ff731d"
-				 width="60"
-				 height="60"
-			/>
+			<LoadingIcon v-if="fetchingData"/>
 		</div>
 	</main>
 </template>

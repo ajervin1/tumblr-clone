@@ -2,6 +2,7 @@
 <script setup lang="ts">
 // Imports at top
 import useStore from "~/store";
+import LoadingIcon from "~/components/LoadingIcon.vue";
 // Use functions here
 useHead({
 	title: `TikTokFlow | Trending TikToks`,
@@ -45,9 +46,9 @@ onMounted(() => {
 </script>
 <template>
 	<main class="home-page">
-		<Avatar  size="20"/>
+	
 		<!-- Trending Heading -->
-		<div class="container mx-auto py-4 max-w-screen space-y-1">
+		<div class="container mx-auto py-6 space-y-1" >
 			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
 			<p class="text-gray-500">Stay up to date with the latest viral trends that are sweeping across TikTok</p>
 		</div>
@@ -58,13 +59,7 @@ onMounted(() => {
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">
-			<Icon
-				 v-if="fetchingData"
-				 name="line-md:loading-alt-loop"
-				 color="#ff731d"
-				 width="60"
-				 height="60"
-			/>
+			<LoadingIcon v-if="fetchingData"/>
 		</div>
 	</main>
 </template>

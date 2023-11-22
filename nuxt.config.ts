@@ -6,12 +6,12 @@ export default defineNuxtConfig({
   typescript: {
     strict: false,
   },
-  // watchers: {
-  //   webpack: {
-  //     aggregateTimeout: 300,
-  //     poll: 1000
-  //   }
-  // },
+/*  watchers: {
+    webpack: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+  },*/
   devtools: { enabled: false },
   modules: [ '@nuxtjs/google-fonts','nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
   // @ts-ignore

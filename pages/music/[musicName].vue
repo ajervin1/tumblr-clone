@@ -4,6 +4,7 @@
 * Get her from on the single page music link
 * */
 import useStore from "~/store";
+import LoadingIcon from "~/components/LoadingIcon.vue";
 const store = useStore();
 const route = useRoute();
 const {musicName}: any = route.params;
@@ -39,7 +40,7 @@ onMounted(() => {
 	<main class="show-page pb-10">
 		<!-- Music Heading -->
 		<div class="container mx-auto py-4">
-			<div class="bg-white items-center shadow p-4 rounded">
+			<div class="bg-white shadow p-4 rounded-xl">
 				<h2 class="page-heading text-3xl">{{ musicName }}</h2>
 				<h6 class="page-subtitle mb-5">There are {{ store.data.total}} number of tiktoks with this sound</h6>
 				<audio controls :src="tiktok.metadata.music.play_url.uri" />
@@ -51,13 +52,7 @@ onMounted(() => {
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">
-			<Icon
-				 v-if="fetchingData"
-				 name="line-md:loading-alt-loop"
-				 color="#ff731d"
-				 width="60"
-				 height="60"
-			/>
+			<LoadingIcon v-if="fetchingData"/>
 		</div>
 	</main>
 </template>

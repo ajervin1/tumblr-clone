@@ -1,12 +1,14 @@
 <!-- ShowPage /tiktoks/:id -->
-<script setup lang="ts" type="module">
+<script setup lang="ts" >
 /*Display individual tiktok
 * Display Individual TikTok
 * Get her from clicking on the tiktok image
 * This page will help navigate to the music user and hashtag page
 * */
 import useStore from "~/store";
-
+definePageMeta({
+	layout: 'single'
+})
 const store = useStore();
 const route = useRoute()
 useHead({
@@ -70,7 +72,7 @@ function millisToMinutesAndSeconds( millis ) {
 							<div class="flex items-center gap-2">
 								<h2 class="text-lg font-semibold">{{ data.metadata.author.nickname }}</h2>
 								<NuxtLink :to="`/user/${data.metadata.author.unique_id}`"
-								          class="text-gray-500 font-medium hover:text-blue-500">
+								          class="text-gray-500 font-medium hover:text-primary-700">
 									@{{ data.metadata.author.unique_id }}
 								</NuxtLink>
 							</div>
@@ -89,7 +91,7 @@ function millisToMinutesAndSeconds( millis ) {
 							<!-- Music Info -->
 							<div class="music flex items-center gap-3">
 								<NuxtLink :to="`/music/${data.metadata.music.title}`"
-								          class="font-semibold text-lg tracking-wide hover:text-blue-500">
+								          class="font-semibold text-lg tracking-wide hover:text-primary-700">
 									<font-awesome-icon icon="fas fa-music "/>
 									{{ data.metadata.music.title }} -
 								</NuxtLink>
