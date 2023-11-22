@@ -19,6 +19,9 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			// title: "TikTok Clone",
+			link: [
+				{href: "https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap", rel: "stylesheet"}
+			],
 			meta: [
 				{charset: "utf-8"},
 				{name: "viewport", content: "width=device-width, initial-scale "},
@@ -38,26 +41,26 @@ export default defineNuxtConfig({
 		baseUrl: "http://localhost:3000/"
 	},
 
-	googleFonts: {
-		families: {
-			/*      "Open Sans": [100,200,300,400,500,600,700],
-					"Roboto": [100,200,300,400,500,600,700],*/
-			"Poppins": [300, 400, 500, 600, 700],
-			// "Raleway": [100,200,300,400,500,600,700],
-			// "Inter": [300,400,500,600,700],
-			// Lato: [100,200,300,400,500,600,700],
-		},
-		subsets: ['latin'],
-		display: 'swap',
-		prefetch: false,
-		preconnect: false,
-		preload: false,
-		download: true,
-		base64: false,
-		
-		// @ts-ignore
-		// "Open Sans": true,
-	},
+	// googleFonts: {
+	// 	families: {
+	// 		/*      "Open Sans": [100,200,300,400,500,600,700],
+	// 				"Roboto": [100,200,300,400,500,600,700],*/
+	// 		"Poppins": [300, 400, 500, 600, 700],
+	// 		// "Raleway": [100,200,300,400,500,600,700],
+	// 		// "Inter": [300,400,500,600,700],
+	// 		// Lato: [100,200,300,400,500,600,700],
+	// 	},
+	// 	subsets: ['latin'],
+	// 	display: 'swap',
+	// 	prefetch: false,
+	// 	preconnect: false,
+	// 	preload: false,
+	// 	download: true,
+	// 	base64: false,
+	//
+	// 	// @ts-ignore
+	// 	// "Open Sans": true,
+	// },
 	tailwindcss: {
 		exposeConfig: true,
 		viewer: true,
