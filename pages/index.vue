@@ -53,7 +53,7 @@ onMounted(() => {
 		
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
-			<div class="super-grid">
+			<div class="tiktok-grid">
 				<TransitionGroup name="list">
 					<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 				</TransitionGroup>
@@ -106,5 +106,11 @@ onMounted(() => {
 .list-leave-to {
 	opacity: 0;
 	transform: translateX(30px);
+}
+.tiktok-grid {
+	display: grid;
+	width: 100%;
+	grid-gap: 24px 16px;
+	grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
 }
 </style>
