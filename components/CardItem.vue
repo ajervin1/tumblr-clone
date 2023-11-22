@@ -22,6 +22,12 @@ const stats = computed(() => {
 const isLongText = computed(() => {
 	return data.metadata.desc.length >= 20;
 })
+const desc = computed(() => {
+	var regexp = /#\S+/g;
+	let description = data.metadata.desc;
+	description = description.replace(regexp, '').trim()
+	return description;
+})
 const duration = computed(() => {
 	return millisToMinutesAndSeconds(data.metadata.video.duration);
 })
@@ -33,7 +39,7 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 	<div
 		 class="flex flex-col overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200">
 		<figure class="relative aspect-w-1 aspect-h-1" style="/*! background: blue; */">
-			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
+			<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`">
 				<img :src="tikok.thumbnailDynamic" alt="Shoes"
 				     class="absolute w-full h-full object-cover inset-0"/>
 			</NuxtLink>
@@ -42,7 +48,7 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 			<div class="flex-1">
 				<div class="p-4 space-y-1">
 					<h2 class="text-lg font-semibold tracking-tight truncate">
-						<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" class="hover:text-primary-600">
+						<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`" class="hover:text-primary-600">
 							{{ metaData.desc.slice(0, 40) }} {{
 								isLongText ? "..." : ""
 							}}

@@ -6,19 +6,14 @@
 * This page will help navigate to the music user and hashtag page
 * */
 import useStore from "~/store";
+const config = useRuntimeConfig()
 definePageMeta({
 	layout: 'single'
 })
 const store = useStore();
-const route = useRoute()
-useHead({
-	title: "Nuxt Dojo",
-	meta: [
-		{ name: "description", content: "TikTok Item" }
-	]
-})
-
-await store.fetchTikTokById(route.params.id);
+const route = useRoute();
+const [title, id] = route.params.id.split("-");
+await store.fetchTikTokById(id);
 const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,
@@ -31,9 +26,17 @@ let description = data.metadata.desc;
 description = description.replace(regexp, '').trim()
 
 useHead({
-	title: `${ data.metadata.author.unique_id } | ${ description }`,
+	
+	link: [
+		{
+			rel: "canonical",
+			href: `${config.public.baseUrl}tiktoks/${route.params.id}`
+		}
+	],
+	title: `${description} @${data.metadata.author.unique_id} - Tiktok Viewer`,
 	meta: [
-		{ name: "description", content: "TikTok Item" }
+		{name: "description", content: `${data.metadata.desc} - @${data.metadata.author.unique_id}`},
+		{name: "keywords", content: `@${data.metadata.author.unique_id}, ${data.metadata.author.nickname}, tiktok movie, tiktok video, tiktok viewer, tiktok player`  }
 	]
 })
 

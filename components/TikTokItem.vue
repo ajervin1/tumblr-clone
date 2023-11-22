@@ -32,7 +32,7 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 		 class="tiktok-card card shadow-lg cursor-pointer overflow-hidden rounded-md ease-in-out duration-200 hover:scale-[1.04] hover:shadow-xl relative"
 		 :key="tikok.id">
 		<figure class="h-[200px] relative">
-			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
+			<NuxtLink :to="`/tiktoks/${}-${metaData.aweme_id}`">
 				<!--				<div class="skeleton background tiktok-image"></div>-->
 				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background tiktok-image"/>
 				

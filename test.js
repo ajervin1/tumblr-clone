@@ -1,2 +1,2 @@
-const text = "12343";
-console.log(text.slice(0, 2))
+const string = "핑크광공입니다-7304263257164893442"
+const [title, id] = string.split("-")

@@ -66,8 +66,8 @@ onMounted(() => {
 					     class="w-36 rounded shadow" alt="">
 				</NuxtLink>
 				<div class="user-info">
-					<h2 class="page-heading">{{ singleTok.metadata.author.nickname }}</h2>
-					<h6 class="page-subtitle mb-2">{{ singleTok.metadata.author.unique_id }}</h6>
+					<h1 class="page-heading">{{ singleTok.metadata.author.nickname }}</h1>
+					<h2 class="page-subtitle mb-2">{{ singleTok.metadata.author.unique_id }}</h2>
 					<p>{{singleTok.metadata.author.signature}}</p>
 				</div>
 			</div>
