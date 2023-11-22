@@ -53,7 +53,8 @@ onMounted(() => {
 		
 		<!-- Main Content -->
 		<section class="container mx-auto py-4">
-			<div class="grid gap-4 md:gap-6 md:grid-cols-2 xl:grid-cols-3 grid-cols-5 tablet:grid-cols-2 phone:grid-cols-1">
+			<div
+				 class="grid gap-4 md:gap-6 md:grid-cols-2 xl:grid-cols-3 grid-cols-5 tablet:grid-cols-2 phone:grid-cols-1">
 				<TransitionGroup name="list">
 					<CliprItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
 				</TransitionGroup>
@@ -71,30 +72,29 @@ onMounted(() => {
 				 height="60"
 			/>
 		</div>
-		<div class="bg-white border border-t border-slate-300 ">
-			<footer class="container mx-auto py-12 flex gap-4  justify-between">
-				<div class="logo">
-					<p class="text-base  text-gray-500">
-						This site is in no way affilated with TikTok.
-						<br>
-						<a href="https://clipr.xyz/privacy-policy" class="text-primary-600">
-							Privacy Policy
-						</a>
-						<span aria-hidden="true">·</span>
-						<a href="https://clipr.xyz/page/terms-of-service" class="text-primary-600">
-							Terms of Service
-						</a>
-					</p>
-				</div>
-				<div class="icons flex items-center gap-10">
-					<Icon name="mdi:twitter" class="w-6 h-6 text-gray-500" />
-					<Icon name="mdi:github" class="w-6 h-6 text-gray-500" />
-					<Icon name="mdi:instagram" class="w-6 h-6 text-gray-500" />
-					<Icon name="mdi:discord" color="#" width="20" height="20"/>
-				</div>
-			</footer>
 		
-		</div>
+		<footer class="container mx-auto py-12 flex gap-4  justify-between">
+			<div class="logo">
+				<p class="text-base  text-gray-500">
+					This site is in no way affilated with TikTok.
+					<br>
+					<a href="https://clipr.xyz/privacy-policy" class="text-primary-600">
+						Privacy Policy
+					</a>
+					<span aria-hidden="true">·</span>
+					<a href="https://clipr.xyz/page/terms-of-service" class="text-primary-600">
+						Terms of Service
+					</a>
+				</p>
+			</div>
+			<div class="icons flex items-center gap-10">
+				<Icon name="mdi:twitter" class="w-6 h-6 text-gray-500"/>
+				<Icon name="mdi:github" class="w-6 h-6 text-gray-500"/>
+				<Icon name="mdi:instagram" class="w-6 h-6 text-gray-500"/>
+				<Icon name="mdi:discord" class="w-6 h-6 text-gray-500"/>
+		
+			</div>
+		</footer>
 	
 	
 	</main>

@@ -17,12 +17,15 @@
 .text-primary-600 {
    color: rgb(124 58 237);
 }
+.bg-primary-700 {
+	background-color: rgb(109 40 217/1);
+}
 .container {
 	max-width: 90%;
 }
 
 html {
-	font-family: "Lato", sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 /* Change BG Color */
 :root, [date-theme] {
