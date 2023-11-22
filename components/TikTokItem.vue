@@ -41,7 +41,6 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 							duration
 						}}</span>
 				</div>
-			
 			</NuxtLink>
 		</figure>
 		<div class="card-body py-2 pb-3 gap-1.5 bg-white">

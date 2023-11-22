@@ -14,12 +14,12 @@
 		@apply grid grid-cols-5 gap-4 2xl:grid-cols-4 xl:grid-cols-3 desktop:grid-cols-2 tablet:grid-cols-2 phone:grid-cols-1
 	}
 }
-.text-primary-600 {
-   color: rgb(124 58 237);
-}
-.bg-primary-700 {
-	background-color: rgb(109 40 217/1);
-}
+/*.text-primary-600 {*/
+/*   color: rgb(124 58 237);*/
+/*}*/
+/*.bg-primary-700 {*/
+/*	background-color: rgb(109 40 217/1);*/
+/*}*/
 .container {
 	max-width: 90%;
 }

@@ -4,6 +4,14 @@ module.exports = {
 		aspectRatio: false,
 	},
 	theme: {
+		extend: {
+			colors: {
+				'primary': {
+					600: "rgb(124 58 237)",
+					700: "rgb(109 40 217/1)"
+				}
+			},
+		},
 		screens: {
 			"2xl": {'max': '1535px'},
 			// => @media (max-width: 1535px) { ... }

@@ -30,24 +30,27 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 
 <template>
 	
-	<div class="flex flex-col overflow-hidden shadow rounded-xl bg-white">
+	<div
+		 class="flex flex-col overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200">
 		<figure class="relative aspect-w-1 aspect-h-1" style="/*! background: blue; */">
-			<a href="https://clipr.xyz/TenuousPlumpCatChocolateRain-kz2VneHtu5oL7PTJ">
+			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
 				<img :src="tikok.thumbnailDynamic" alt="Shoes"
-				     class="absolute w-full h-full object-cover inset-0 rounded-lg"/>
-			</a>
+				     class="absolute w-full h-full object-cover inset-0"/>
+			</NuxtLink>
 		</figure>
 		<div class="flex flex-col justify-between flex-1">
 			<div class="flex-1">
 				<div class="p-4 space-y-1">
 					<h2 class="text-lg font-semibold tracking-tight truncate">
-						<a href="https://clipr.xyz/TenuousPlumpCatChocolateRain-kz2VneHtu5oL7PTJ">
+						<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`" class="hover:text-primary-600">
 							{{ metaData.desc.slice(0, 40) }} {{
-								isLongText ? "..." : "" }}
-						</a>
+								isLongText ? "..." : ""
+							}}
+						</NuxtLink>
 					</h2>
-					<!-- Play Count and Duration -->
+					
 					<h3 class="text-gray-500">
+						<!-- PlayCount and Duration -->
 						<div class="relative">
 							<div class="absolute -inset-x-2 bottom-14">
 								<div class="flex justify-between">
@@ -63,10 +66,15 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 								</div>
 							</div>
 						</div>
+						<!-- User Meta -->
 						<div class="text-sm">
-							<span class="font-semibold">{{ metaData.author.nickname }}</span>
+							<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-semibold hover:text-primary-600">
+								{{ metaData.author.nickname }}
+							</NuxtLink>
 							<br>
-							{{ metaData.author.unique_id }}
+							<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-medium hover:text-primary-600">
+								{{ metaData.author.unique_id }}
+							</NuxtLink>
 							<span aria-hidden="true">·</span>
 							{{ formatDistance(new Date(), new Date(metaData.create_time_ISO)) }}
 						

@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   //   }
   // },
   devtools: { enabled: false },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts','nuxt-icon', '@pinia/nuxt', ],
+  modules: [ '@nuxtjs/google-fonts','nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
   // @ts-ignore
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
   app: {
@@ -50,5 +50,9 @@ export default defineNuxtConfig({
     
     // @ts-ignore
     // "Open Sans": true,
+  },
+  tailwindcss: {
+    exposeConfig: true,
+    viewer: true,
   }
 })
