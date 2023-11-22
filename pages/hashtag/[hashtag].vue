@@ -1,11 +1,9 @@
-<!-- hashtag Page /music/:hashtag -->
 <script setup lang="ts">
 /*
 * Display list of tiktoks associated with a hashtag
 * Get her from clicking on a hashtag on the ShowPage
 * */
 import useStore from "~/store";
-
 const store = useStore();
 const route = useRoute();
 const {hashtag}: any = route.params
@@ -29,9 +27,12 @@ function observeLoadMore() {
 	}, {threshold: 1})
 	observer.observe(triggerEl.value)
 }
-
-
 await store.searchByHashtag(hashtag);
+
+onMounted(() => {
+	observeLoadMore()
+})
+
 </script>
 
 <template>
@@ -45,12 +46,7 @@ await store.searchByHashtag(hashtag);
 			
 		</div>
 		<!-- Main Content -->
-		<section class="container mx-auto py-4">
-			<div class="grid grid-cols-4 gap-8">
-				<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
-			</div>
-			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
-		</section>
+		<ItemList />
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">

@@ -45,8 +45,7 @@ function millisToMinutesAndSeconds( millis ) {
 </script>
 
 <template>
-	<main class="show-page pb-10">
-	
+	<main class="show-page">
 		<section class="container mx-auto pt-5">
 			<!-- Grid Container -->
 			<div class="grid grid-cols-2 gap-10">

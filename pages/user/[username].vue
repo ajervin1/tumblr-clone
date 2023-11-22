@@ -4,6 +4,7 @@
 * When user searches this page will handle the request
 * */
 import useStore from "~/store";
+import CardItem from "~/components/CardItem.vue";
 const store = useStore();
 const route = useRoute();
 const {username}: any = route.params;
@@ -57,14 +58,7 @@ onMounted(() => {
 
 		</div>
 		<!-- Main Content -->
-		<section class="container mx-auto py-4">
-			<!-- Grid -->
-			<div class="super-grid">
-				<TikTokItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
-			</div>
-			<!-- Load More Button -->
-			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>
-		</section>
+		<ItemList />
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">

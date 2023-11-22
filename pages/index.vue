@@ -45,6 +45,7 @@ onMounted(() => {
 </script>
 <template>
 	<main class="home-page">
+		<Avatar  size="20"/>
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-4 max-w-screen space-y-1">
 			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
@@ -53,15 +54,7 @@ onMounted(() => {
 		
 		
 		<!-- Main Content -->
-		<section class="container mx-auto py-4">
-			<div
-				 class="grid gap-4 gap-y-8 md:gap-6 md:grid-cols-2 xl:grid-cols-3 grid-cols-5 tablet:grid-cols-2 phone:grid-cols-1">
-				<TransitionGroup name="list">
-					<CliprItem v-for="tiktok in store.tiktoks" :tiktok="tiktok" :key="tiktok._tik.id"/>
-				</TransitionGroup>
-			</div>
-			<!--			<button class="btn btn-primary btn-md my-10" @click="loadMore">Load More</button>-->
-		</section>
+		<ItemList />
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
 		<div class="container mx-auto text-center py-4">
