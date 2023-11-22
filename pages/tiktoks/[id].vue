@@ -12,8 +12,9 @@ definePageMeta({
 })
 const store = useStore();
 const route = useRoute();
-const [title, id] = route.params.id.split("-");
-await store.fetchTikTokById(id);
+const strings = route.params.id.split("-");
+const tiktokId = strings[strings.length - 1];
+await store.fetchTikTokById(tiktokId);
 const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,

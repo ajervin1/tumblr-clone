@@ -25,7 +25,8 @@ const isLongText = computed(() => {
 const desc = computed(() => {
 	var regexp = /#\S+/g;
 	let description = data.metadata.desc;
-	description = description.replace(regexp, '').trim()
+	description = description.replace(regexp, '').trim();
+	description = description.replace(/ /g, "-");
 	return description;
 })
 const duration = computed(() => {
