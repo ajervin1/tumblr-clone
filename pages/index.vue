@@ -38,16 +38,16 @@ function observeLoadMore() {
 }
 
 onMounted(() => {
-	observeLoadMore();
+	// observeLoadMore();
 })
 </script>
 <template>
 	<main class="app min-h-screen">
 		<NavBar/>
 		<!-- Trending Heading -->
-		<div class="container mx-auto py-4 max-w-screen">
-			<h2 class="page-heading">Trending Clips</h2>
-			<h6 class="page-subtitle">Stay up to date with the latest viral trends that are sweeping across TikTok</h6>
+		<div class="container mx-auto py-4 max-w-screen space-y-1">
+			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
+			<p class="text-gray-500">Stay up to date with the latest viral trends that are sweeping across TikTok</p>
 		</div>
 		
 		
@@ -72,20 +72,25 @@ onMounted(() => {
 			/>
 		</div>
 		<div class="bg-white border border-t border-slate-300 ">
-			<footer class="container mx-auto py-4 flex gap-4 items-center justify-between">
+			<footer class="container mx-auto py-12 flex gap-4  justify-between">
 				<div class="logo">
-					<img class="w-[75px] h-[75px]"
-					     src="https://www.tiktokstalk.com/public/img/template/tiktokhub-footer-logo.svg" alt="">
-				</div>
-				<div class="links flex items-center gap-3">
-					<a href="">Contact</a>
-					<a href="">Privacy Policy</a>
-					<a href="">Terms of Service</a>
+					<p class="text-base  text-gray-500">
+						This site is in no way affilated with TikTok.
+						<br>
+						<a href="https://clipr.xyz/privacy-policy" class="text-primary-600">
+							Privacy Policy
+						</a>
+						<span aria-hidden="true">·</span>
+						<a href="https://clipr.xyz/page/terms-of-service" class="text-primary-600">
+							Terms of Service
+						</a>
+					</p>
 				</div>
 				<div class="icons flex items-center gap-10">
-					<Icon name="mdi:twitter" color="#" width="20" height="20"/>
-					<Icon name="mdi:github" color="#" width="20" height="20"/>
-					<Icon name="mdi:instagram" color="#" width="20" height="20"/>
+					<Icon name="mdi:twitter" class="w-6 h-6 text-gray-500" />
+					<Icon name="mdi:github" class="w-6 h-6 text-gray-500" />
+					<Icon name="mdi:instagram" class="w-6 h-6 text-gray-500" />
+					<Icon name="mdi:discord" color="#" width="20" height="20"/>
 				</div>
 			</footer>
 		
@@ -107,6 +112,7 @@ onMounted(() => {
 	opacity: 0;
 	transform: translateX(30px);
 }
+
 .tiktok-grid {
 	display: grid;
 	width: 100%;

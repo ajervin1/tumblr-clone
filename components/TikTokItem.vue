@@ -31,16 +31,18 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 	<div
 		 class="tiktok-card card shadow-lg cursor-pointer overflow-hidden rounded-md ease-in-out duration-200 hover:scale-[1.04] hover:shadow-xl relative"
 		 :key="tikok.id">
-		<figure class="relative">
-<!--			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">-->
-				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="tiktok-image"/>
-<!--				<div class="hover-bg relative">
+		<figure class="h-[200px] relative">
+			<NuxtLink :to="`/tiktoks/${metaData.aweme_id}`">
+				<!--				<div class="skeleton background tiktok-image"></div>-->
+				<img :src="tikok.thumbnailDynamic" alt="Shoes" class="background tiktok-image"/>
+				
+				<div class="hover-bg relative">
 					<span class="tiktok-badge border-0 badge bg-slate-900 text-white opacity-90 font-medium text-xs">{{
 							duration
 						}}</span>
-				</div>-->
+				</div>
 			
-<!--			</NuxtLink>-->
+			</NuxtLink>
 		</figure>
 		<div class="card-body py-2 pb-3 gap-1.5 bg-white">
 			<h2 class="card-title p-0 m-0">{{ metaData.author.nickname }}</h2>
@@ -73,7 +75,7 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 
 <style scoped>
 .tiktok-card {
-/*	padding-top: 80%;*/
+	/*	padding-top: 80%;*/
 	height: 275px;
 }
 
@@ -84,12 +86,14 @@ figure {
 	width: 100%;
 	height: 100%;
 }
+
 .tiktok-image {
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
+
 .v-enter-active,
 .v-leave-active {
 	transition: opacity 0.5s ease;

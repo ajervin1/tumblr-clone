@@ -14,7 +14,9 @@
 		@apply grid grid-cols-5 gap-4 2xl:grid-cols-4 xl:grid-cols-3 desktop:grid-cols-2 tablet:grid-cols-2 phone:grid-cols-1
 	}
 }
-
+.text-primary-600 {
+   color: rgb(124 58 237);
+}
 .container {
 	max-width: 90%;
 }
@@ -26,4 +28,6 @@ html {
 :root, [date-theme] {
 	/*background-color: rgb(252, 249, 249);*/
 /*	background-color:  #f1f1f1;*/
+	background-color: rgb(241 245 249/var(--tw-bg-opacity));
+	
 }
