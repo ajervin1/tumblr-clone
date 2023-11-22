@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<div class="app min-h-screen bg-gray-100">
+	<div class="app min-h-screen bg-gray-200">
 		<!-- NavBar -->
 		<NavBar/>
 		<!-- Main Content Will Go Here -->

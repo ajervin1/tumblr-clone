@@ -38,7 +38,10 @@ export default defineNuxtConfig({
 		}
 	},
 	runtimeConfig: {
-		baseUrl: "http://localhost:3000/"
+		baseUrl: "http://localhost:3000/",
+		public: {
+			baseUrl: "http://localhost:3000/"
+		}
 	},
 
 	// googleFonts: {

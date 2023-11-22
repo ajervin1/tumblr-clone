@@ -4,7 +4,7 @@
 * Get her from clicking on a hashtag on the ShowPage
 * */
 import useStore from "~/store";
-import LoadingIcon from "~/components/LoadingIcon.vue";
+const config = useRuntimeConfig()
 const store = useStore();
 const route = useRoute();
 const {hashtag}: any = route.params
@@ -28,8 +28,24 @@ function observeLoadMore() {
 	}, {threshold: 1})
 	observer.observe(triggerEl.value)
 }
-await store.searchByHashtag(hashtag);
 
+
+
+useHead({
+
+	link: [
+		{
+			rel: "canonical",
+			href: `${config.public.baseUrl}hashtag/${hashtag}`
+		}
+	],
+	title: `Tiktok video viewer hashtag - #${hashtag}`,
+	meta: [
+		{name: "description", content: `#${hashtag} - Easily browse the tiktok videos with #${hashtag} hashtag`},
+		{name: "keywords", content: `tiktok hash, tiktok hashtag, tiktok hashtags, tiktok hashtag viewer, hashtag tiktok viewer, tiktok #${hashtag}, #${hashtag}`  }
+	]
+})
+await store.searchByHashtag(hashtag);
 onMounted(() => {
 	observeLoadMore()
 })

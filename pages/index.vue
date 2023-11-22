@@ -3,7 +3,6 @@
 // Imports at top
 const config = useRuntimeConfig()
 import useStore from "~/store";
-import LoadingIcon from "~/components/LoadingIcon.vue";
 // Use functions here
 useHead({
 	// charset: 'utf-8',

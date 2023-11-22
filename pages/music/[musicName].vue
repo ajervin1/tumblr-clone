@@ -1,11 +1,9 @@
 <script setup lang="ts">
-/*
-* Display list of tiktoks associated with a music name
-* Get her from on the single page music link
-* */
 import useStore from "~/store";
-import LoadingIcon from "~/components/LoadingIcon.vue";
+
 const store = useStore();
+const config = useRuntimeConfig()
+
 const route = useRoute();
 const {musicName}: any = route.params;
 const triggerEl = ref();
@@ -29,8 +27,24 @@ function observeLoadMore() {
 }
 await store.searchByMusicTitle(musicName);
 const tiktok = store.data.itemList[0];
+const {metadata} = tiktok;
+const {author, owner_handle} = metadata.music;
 
-
+useHead({
+	// charset: 'utf-8',
+	// viewport: 'width=device-width, initial-scale=1',
+	link: [
+		{
+			rel: "canonical",
+			href: `${config.public.baseUrl}music/${musicName}`
+		}
+	],
+	title: `${musicName} - ${author} - Tiktok video viewer by song`,
+	meta: [
+		{name: "description", content: `Tiktok video viewer with song ${musicName} - ${author}`},
+		{name: "keywords", content: `tiktok videos, tiktok music, tiktok song, ${author}, ${owner_handle}, ${musicName}, tiktok music viewer`  }
+	]
+})
 onMounted(() => {
 	observeLoadMore();
 })
@@ -41,7 +55,11 @@ onMounted(() => {
 		<!-- Music Heading -->
 		<div class="container mx-auto py-4">
 			<div class="bg-white shadow p-4 rounded-xl">
-				<h2 class="page-heading text-3xl">{{ musicName }}</h2>
+				<div class="flex gap-4 mb-3">
+					<h2 class="page-heading text-3xl">{{ author }} - </h2>
+					<h2 class="page-heading text-3xl">{{ musicName }}</h2>
+				</div>
+			
 				<h6 class="page-subtitle mb-5">There are {{ store.data.total}} number of tiktoks with this sound</h6>
 				<audio controls :src="tiktok.metadata.music.play_url.uri" />
 			</div>

@@ -3,11 +3,12 @@
 /*
 * When user searches this page will handle the request
 * */
+const config = useRuntimeConfig()
 import useStore from "~/store";
-import CardItem from "~/components/CardItem.vue";
-import LoadingIcon from "~/components/LoadingIcon.vue";
+
 const store = useStore();
 const route = useRoute();
+
 const {username}: any = route.params;
 const triggerEl = ref();
 const timer = ref()
@@ -34,7 +35,22 @@ function observeLoadMore() {
 
 await store.searchByUsername(username)
 const singleTok = store.tiktoks[0];
-
+const {unique_id, nickname} = singleTok.metadata.author
+useHead({
+	// charset: 'utf-8',
+	// viewport: 'width=device-width, initial-scale=1',
+	link: [
+		{
+			rel: "canonical",
+			href: `${config.public.baseUrl}user/${username}`
+		}
+	],
+	title: `${singleTok.metadata.author.nickname} - @${singleTok.metadata.author.unique_id} - TikTok Viewer`,
+	meta: [
+		{name: "description", content: `@${singleTok.metadata.author.unique_id} ${singleTok.metadata.author.nickname} ${singleTok.metadata.author.signature}`},
+		{name: "keywords", content: `@${unique_id}, ${nickname}, tiktok profile, tiktok account, tiktok overview, tiktok viewer`  }
+	]
+})
 onMounted(() => {
 	observeLoadMore();
 })
