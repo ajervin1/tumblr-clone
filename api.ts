@@ -1,9 +1,6 @@
-import axios from "axios";
 
-const request = axios.create({
-	baseURL: 'https://api.tik.fail/v2/',
-	
-});
+
+
 const avatarUrl = "https://v2-thumbs-tiktok.files.fail/avatar/${uniqueId}.jpeg"
 // Mock Data
 const pag = {

@@ -1,9 +1,39 @@
 <!-- Trending Page -->
 <script setup lang="ts">
 // Imports at top
-const config = useRuntimeConfig()
 import useStore from "~/store";
+
 // Use functions here
+const config = useRuntimeConfig()
+
+const store = useStore();
+const {sayHello} = useHelpers();
+// State Here
+const triggerEl = ref();
+const timer = ref()
+const fetchingData = ref(false);
+
+// Functions Here
+async function loadMore() {
+	await store.searchByHashtag('foryou', store.pagination.nextCursor);
+	fetchingData.value = false;
+}
+function observeLoadMore() {
+	const observer = new IntersectionObserver((entries) => {
+		if (entries[0].isIntersecting) {
+			fetchingData.value = true;
+			clearTimeout(timer.value);
+			timer.value = setTimeout(() => {
+				loadMore();
+			}, 300)
+			
+		}
+	}, {threshold: 1})
+	observer.observe(triggerEl.value)
+}
+
+
+
 useHead({
 	// charset: 'utf-8',
 	// viewport: 'width=device-width, initial-scale=1',
@@ -19,37 +49,11 @@ useHead({
 		{name: "keywords", content: "tiktok online, tiktok viewer, tiktok viral, tiktok anonymous, tiktokflow, tiktokflow.com"  }
 	]
 })
-const store = useStore();
-const {sayHello} = useHelpers();
-// State Here
-const triggerEl = ref();
-const timer = ref()
-const fetchingData = ref(false);
 
-// Functions Here
-async function loadMore() {
-	
-	await store.searchByHashtag('foryou', store.pagination.nextCursor);
-	fetchingData.value = false;
-}
-
-function observeLoadMore() {
-	const observer = new IntersectionObserver((entries) => {
-		if (entries[0].isIntersecting) {
-			fetchingData.value = true;
-			clearTimeout(timer.value);
-			timer.value = setTimeout(() => {
-				loadMore();
-			}, 300)
-			// loadMore()
-		}
-	}, {threshold: 1})
-	observer.observe(triggerEl.value)
-}
-
-// Run Code Here
+// Run Code At Bottom
 await store.searchByHashtag('foryou');
-
+const response = await useFetch('/api/trending');
+console.log(response)
 // Dom Code here
 onMounted(() => {
 	observeLoadMore();
@@ -57,13 +61,11 @@ onMounted(() => {
 </script>
 <template>
 	<main class="home-page">
-		<SeoKit/>
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-6 space-y-1">
 			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
 			<p class="text-gray-500">Stay up to date with the latest viral trends that are sweeping across TikTok</p>
 		</div>
-		
 		
 		<!-- Main Content -->
 		<ItemList/>

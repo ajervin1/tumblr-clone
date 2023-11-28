@@ -14,7 +14,19 @@ export default defineNuxtConfig({
 		 }
 	  },*/
 	devtools: {enabled: false},
-	modules: ['@nuxtjs/google-fonts', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
+	modules: ['nuxt-simple-sitemap','@nuxtjs/supabase','@nuxtjs/google-fonts', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
+	site: {
+		url: "localhost:3000"
+	},
+	nitro: {
+		prerender: {
+			crawlLinks: true,
+			
+		}
+	},
+	supabase: {
+		redirect: false,
+	},
 	// @ts-ignore
 	app: {
 		head: {
@@ -44,26 +56,6 @@ export default defineNuxtConfig({
 		}
 	},
 
-	// googleFonts: {
-	// 	families: {
-	// 		/*      "Open Sans": [100,200,300,400,500,600,700],
-	// 				"Roboto": [100,200,300,400,500,600,700],*/
-	// 		"Poppins": [300, 400, 500, 600, 700],
-	// 		// "Raleway": [100,200,300,400,500,600,700],
-	// 		// "Inter": [300,400,500,600,700],
-	// 		// Lato: [100,200,300,400,500,600,700],
-	// 	},
-	// 	subsets: ['latin'],
-	// 	display: 'swap',
-	// 	prefetch: false,
-	// 	preconnect: false,
-	// 	preload: false,
-	// 	download: true,
-	// 	base64: false,
-	//
-	// 	// @ts-ignore
-	// 	// "Open Sans": true,
-	// },
 	tailwindcss: {
 		exposeConfig: true,
 		viewer: true,

@@ -71,8 +71,6 @@ onMounted(() => {
 					<p>{{singleTok.metadata.author.signature}}</p>
 				</div>
 			</div>
-
-
 		</div>
 		<!-- Main Content -->
 		<ItemList />

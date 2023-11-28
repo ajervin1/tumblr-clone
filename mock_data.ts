@@ -1,4 +1,4 @@
-export const tiktokItem = 		{
+export type TiktokItem =  		{
 	"_score": 14.719671,
 	"_tik_archive_count": 1,
 	"_tik": {
@@ -496,4 +496,16 @@ export const tiktokItem = 		{
 		"video_text": [],
 		"voice_filter_ids": null
 	}
+}
+
+export type Pagination = {
+		"total": 10000,
+		"count": 9,
+		"cursor": 0,
+		"previousCursor": 0,
+		"nextCursor": 9,
+		"lastCursor": 9991,
+		"firstCursor": 0,
+		"currentPage": 1,
+		"totalPages": 1111
 }
