@@ -1,7 +1,8 @@
 <script setup lang="ts">
+
 import useStore from "~/store";
 
-const store = useStore()
+const store = useStore();
 
 
 

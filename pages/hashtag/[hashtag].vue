@@ -3,7 +3,9 @@
 * Display list of tiktoks associated with a hashtag
 * Get her from clicking on a hashtag on the ShowPage
 * */
+
 import useStore from "~/store";
+
 const config = useRuntimeConfig()
 const store = useStore();
 const route = useRoute();
@@ -13,7 +15,7 @@ const timer = ref()
 const fetchingData = ref(false);
 
 async function loadMore() {
-	await store.searchByHashtag2(hashtag, store.pagination.nextCursor);
+	await store.searchByHashtag(hashtag, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -31,7 +33,7 @@ function observeLoadMore() {
 
 
 
-await store.searchByHashtag2(hashtag);
+await store.searchByHashtag(hashtag);
 onMounted(() => {
 	observeLoadMore()
 })

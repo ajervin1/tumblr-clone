@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import useStore from "~/store";
+
 import {storeToRefs} from "pinia";
+import useStore from "~/store";
 const store = useStore();
 const { tiktoks } = storeToRefs(store)
 

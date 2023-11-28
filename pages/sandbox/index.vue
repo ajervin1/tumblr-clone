@@ -1,12 +1,27 @@
-<script setup >
-const client = useSupabaseClient();
+<script setup lang="ts" >
 
-const {data} = await client.from('tiktoks').ins
+
+import useStore from "~/store.ts";
+
+const store = useStore();
+store.initial()
+definePageMeta({
+	layout: false
+})
+
+
+
+
+
 
 </script>
 
 <template>
-
+	<main>
+		<h2>{{ store.count }}</h2>
+		<h2>{{ store.data }}</h2>
+		<h2>SandBox</h2>
+	</main>
 </template>
 
 <style scoped>

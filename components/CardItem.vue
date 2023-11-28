@@ -38,7 +38,7 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 <template>
 	
 	<div
-		 class="flex flex-col overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200">
+		 class="flex flex-col border border-gray-300 overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200">
 		<figure class="relative aspect-w-1 aspect-h-1" style="/*! background: blue; */">
 			<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`">
 				<img :src="tikok.thumbnailDynamic" alt="Shoes"
@@ -55,7 +55,6 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 							}}
 						</NuxtLink>
 					</h2>
-					
 					<h3 class="text-gray-500">
 						<!-- PlayCount and Duration -->
 						<div class="relative">

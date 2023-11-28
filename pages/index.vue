@@ -1,14 +1,15 @@
 <!-- Trending Page -->
 <script setup lang="ts">
 // Imports at top
-import useStore from "~/store";
+
 import {storeToRefs} from "pinia";
+import useStore from "~/store";
 
 // Use functions here
 const config = useRuntimeConfig()
 
 const store = useStore();
-
+const {count} = storeToRefs(store);
 // State Here
 const triggerEl = ref();
 const timer = ref()
@@ -16,7 +17,7 @@ const fetchingData = ref(false);
 
 // Functions Here
 async function loadMore() {
-	await store.searchByHashtag2('foryou', store.pagination.nextCursor);
+	await store.searchByHashtag('foryou', store.pagination.nextCursor);
 	fetchingData.value = false;
 }
 function observeLoadMore() {
@@ -38,12 +39,13 @@ function observeLoadMore() {
 
 
 // Run Code At Bottom
-await store.searchByHashtag2('foryou');
+await store.searchByHashtag('foryou');
 
 // Dom Code here
 onMounted(() => {
 	observeLoadMore();
 })
+definePageMeta({})
 useHead({
 	// charset: 'utf-8',
 	// viewport: 'width=device-width, initial-scale=1',
@@ -62,9 +64,10 @@ useHead({
 </script>
 <template>
 	<main class="home-page">
+	
 		<!-- Trending Heading -->
 		<div class="container mx-auto py-6 space-y-1">
-			<h3 class="text-2xl font-semibold tracking-tight">Trending Clips</h3>
+			<h3 class="text-2xl font-semibold tracking-tight">Trending TikToks</h3>
 			<p class="text-gray-500">Stay up to date with the latest viral trends that are sweeping across TikTok</p>
 		</div>
 		

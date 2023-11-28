@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import {defineStore} from "pinia";
 
 const baseUrl = "https://api.tik.fail/v2/search"
@@ -9,6 +9,7 @@ const useStore = defineStore('state', {
 		tiktoks: [],
 		tiktok: null,
 		cursor: 0,
+		count: 0
 	}),
 	getters: {
 		pagination: (state) => {
@@ -30,61 +31,32 @@ const useStore = defineStore('state', {
 		}
 	},
 	actions: {
-		async initFunction() {
-			const {data} = await useFetch("https://api.tik.fail/v2/search?usernames=avajustin&cursor=8&sortBy=date&legacySearch=true", {
-				server: true
-			});
-			console.log(data.value);
-		},
-		async searchByUsername(username = 'avajustin', cursor = 0) {
-			const {data} = await useAsyncData('user-result', () => {
-				return $fetch(baseUrl, {
-					params: {
-						usernames: username,
-						cursor,
-						sortBy: "date",
-						legacySearch: true,
-					}
-				})
-			});
-			// If user wants to load more items
-			if (cursor > 0) {
-				this.data = data.value;
-				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
-			} else {
-				// Initial Load
-				this.data = data.value;
-				this.tiktoks = data.value.itemList;
-			}
-		},
-		async searchByHashtag(hashtagName = 'foryou', cursor = 0) {
-			const {data} = await useAsyncData('hashtag-result', () => {
-				return $fetch(baseUrl, {
+		async initial(hashtagName = "foryou", cursor = 0){
+			const {data:res, error} = await useAsyncData('tiktoks', () => {
+				// This code runs on server
+				
+				this.count += 1;
+				return $fetch('/api/hashtag', {
 					params: {
 						hashtagName,
 						cursor,
-						sortBy: "date",
-						legacySearch: true,
 					}
-				})
+				});
 			});
-			// If user wants to load more items
-			if (cursor > 0) {
-				this.data = data.value;
-				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
-			} else {
-				// Initial Load
-				this.data = data.value;
-				this.tiktoks = data.value.itemList;
-			}
+
+			this.data = res.value;
 		},
-		async searchByHashtag2(hashtagName = 'foryou', cursor = 0) {
+		async searchByHashtag(hashtagName = 'foryou', cursor = 0) {
+			console.log("Hashtag function running")
+			
 			const {data} = await useFetch('/api/hashtag', {
 				params: {
 					hashtagName,
 					cursor,
 				}
-			})
+			});
+			console.log(this.count)
+			this.count = this.count + 1;
 			
 			// If user wants to load more items
 			if (cursor > 0) {
@@ -96,7 +68,7 @@ const useStore = defineStore('state', {
 				this.tiktoks = data.value.itemList;
 			}
 		},
-		async searchByUsername2(username = 'avajustin', cursor = 0) {
+		async searchByUsername(username = 'avajustin', cursor = 0) {
 			const {data} = await useFetch('/api/users', {
 				params: {
 					username,
@@ -115,7 +87,7 @@ const useStore = defineStore('state', {
 				this.tiktoks = data.value.itemList;
 			}
 		},
-		async searchByMusicTitle2(musicTitle = 'akon', cursor = 0) {
+		async searchByMusicTitle(musicTitle = 'akon', cursor = 0) {
 			const {data} = await useFetch('/api/music', {
 				params: {
 					musicTitle,
@@ -133,47 +105,14 @@ const useStore = defineStore('state', {
 				this.tiktoks = data.value.itemList;
 			}
 		},
-		async fetchTikTokById2(videoId = '7300945885695954206',) {
+		async fetchTikTokById(videoId = '7300945885695954206',) {
 			const {data} = await useFetch(`/api/tiktoks/${videoId}`, {})
 			if (data.value) {
 				this.tiktok = data.value
 			}
 		},
-		async searchByMusicTitle(musicTitle = 'akon', cursor = 0) {
-			const {data} = await useAsyncData('music-result', () => {
-				return $fetch(baseUrl, {
-					params: {
-						musicTitle,
-						cursor,
-						sortBy: "date",
-						legacySearch: true,
-					}
-				})
-			});
-			// If user wants to load more items
-			if (cursor > 0) {
-				this.data = data.value;
-				this.tiktoks = [...this.tiktoks, ...data.value.itemList];
-			} else {
-				// Initial Load
-				this.data = data.value;
-				this.tiktoks = data.value.itemList;
-			}
-		},
-		async fetchTikTokById(videoId = "7300945885695954206",) {
-			const {data} = await useAsyncData('single-tiktok', () => {
-				return $fetch(baseUrl, {
-					params: {
-						videoID: videoId,
-						legacySearch: true,
-					},
-				})
-			});
-			if (data.value) {
-				this.tiktok = data.value
-			}
-		},
+
 		
 	},
 });
-export default useStore
+export default useStore;

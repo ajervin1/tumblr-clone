@@ -1,7 +1,9 @@
 <script setup lang="ts">
+
+
 import useStore from "~/store";
 
-const store = useStore();
+const store = useStore()
 const config = useRuntimeConfig()
 
 const route = useRoute();
@@ -10,7 +12,7 @@ const triggerEl = ref();
 const timer = ref()
 const fetchingData = ref(false);
 async function loadMore() {
-	await store.searchByMusicTitle2(musicName, store.pagination.nextCursor);
+	await store.searchByMusicTitle(musicName, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -25,7 +27,7 @@ function observeLoadMore() {
 	}, {threshold: 1})
 	observer.observe(triggerEl.value)
 }
-await store.searchByMusicTitle2(musicName);
+await store.searchByMusicTitle(musicName);
 const tiktok = store.data.itemList[0];
 const {metadata} = tiktok;
 const {author, owner_handle} = metadata.music;

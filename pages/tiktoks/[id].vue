@@ -5,16 +5,18 @@
 * Get her from clicking on the tiktok image
 * This page will help navigate to the music user and hashtag page
 * */
-import useStore from "~/store";
+
+import useStore from "~/store.js";
+
 const config = useRuntimeConfig()
 definePageMeta({
 	layout: 'single'
 })
-const store = useStore();
+const store = useStore()
 const route = useRoute();
 const strings = route.params.id.split("-");
 const tiktokId = strings[strings.length - 1];
-await store.fetchTikTokById2(tiktokId);
+await store.fetchTikTokById(tiktokId);
 const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,

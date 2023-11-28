@@ -11,6 +11,6 @@ export default defineEventHandler(async (event) => {
 			legacySearch: true
 		}
 	});
-	console.log(result)
+
 	return result
 })

@@ -3,10 +3,12 @@
 /*
 * When user searches this page will handle the request
 * */
-const config = useRuntimeConfig()
 import useStore from "~/store";
 
-const store = useStore();
+const config = useRuntimeConfig()
+
+
+const store = useStore()
 const route = useRoute();
 
 const {username}: any = route.params;
@@ -16,7 +18,7 @@ const fetchingData = ref(false);
 
 
 async function loadMore() {
-	await store.searchByUsername2(username, store.pagination.nextCursor);
+	await store.searchByUsername(username, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -33,7 +35,7 @@ function observeLoadMore() {
 }
 
 
-await store.searchByUsername2(username)
+await store.searchByUsername(username)
 const singleTok = store.tiktoks[0];
 const {unique_id, nickname} = singleTok.metadata.author
 

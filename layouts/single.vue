@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<div class="app min-h-screen bg-gray-100 flex flex-col">
+	<div class="app min-h-screen bg-gray-200 flex flex-col">
 		<!-- NavBar -->
 		<NavBar/>
 		<!-- Main Content Will Go Here -->
