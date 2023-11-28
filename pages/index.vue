@@ -2,12 +2,13 @@
 <script setup lang="ts">
 // Imports at top
 import useStore from "~/store";
+import {storeToRefs} from "pinia";
 
 // Use functions here
 const config = useRuntimeConfig()
 
 const store = useStore();
-const {sayHello} = useHelpers();
+
 // State Here
 const triggerEl = ref();
 const timer = ref()
@@ -15,7 +16,7 @@ const fetchingData = ref(false);
 
 // Functions Here
 async function loadMore() {
-	await store.searchByHashtag('foryou', store.pagination.nextCursor);
+	await store.searchByHashtag2('foryou', store.pagination.nextCursor);
 	fetchingData.value = false;
 }
 function observeLoadMore() {
@@ -34,6 +35,15 @@ function observeLoadMore() {
 
 
 
+
+
+// Run Code At Bottom
+await store.searchByHashtag2('foryou');
+
+// Dom Code here
+onMounted(() => {
+	observeLoadMore();
+})
 useHead({
 	// charset: 'utf-8',
 	// viewport: 'width=device-width, initial-scale=1',
@@ -48,15 +58,6 @@ useHead({
 		{name: "description", content: "New expirience with anonymous TikTok Viewer. Discover trending videos, viral content and talented creators. Explore TikTok videos privately without account and app"},
 		{name: "keywords", content: "tiktok online, tiktok viewer, tiktok viral, tiktok anonymous, tiktokflow, tiktokflow.com"  }
 	]
-})
-
-// Run Code At Bottom
-await store.searchByHashtag('foryou');
-const response = await useFetch('/api/trending');
-console.log(response)
-// Dom Code here
-onMounted(() => {
-	observeLoadMore();
 })
 </script>
 <template>
@@ -77,15 +78,23 @@ onMounted(() => {
 	</main>
 </template>
 <style>
+.list-move,
 .list-enter-active,
 .list-leave-active {
 	transition: all 0.5s ease;
 }
-
 .list-enter-from,
 .list-leave-to {
 	opacity: 0;
-	transform: translateX(30px);
+	transform: translateX(-30px);
+}
+.list-leave-from,
+.list-enter-to {
+	opacity: 1;
+	transform: translateX(0);
+}
+.list-leave-active{
+	position: absolute;
 }
 
 .tiktok-grid {

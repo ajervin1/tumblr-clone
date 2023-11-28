@@ -16,7 +16,7 @@ const fetchingData = ref(false);
 
 
 async function loadMore() {
-	await store.searchByUsername(username, store.pagination.nextCursor);
+	await store.searchByUsername2(username, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -33,9 +33,13 @@ function observeLoadMore() {
 }
 
 
-await store.searchByUsername(username)
+await store.searchByUsername2(username)
 const singleTok = store.tiktoks[0];
 const {unique_id, nickname} = singleTok.metadata.author
+
+onMounted(() => {
+	observeLoadMore();
+})
 useHead({
 	// charset: 'utf-8',
 	// viewport: 'width=device-width, initial-scale=1',
@@ -51,16 +55,13 @@ useHead({
 		{name: "keywords", content: `@${unique_id}, ${nickname}, tiktok profile, tiktok account, tiktok overview, tiktok viewer`  }
 	]
 })
-onMounted(() => {
-	observeLoadMore();
-})
 </script>
 
 <template>
 	<main class="user-page pb-10">
 		<!-- Username Heading -->
 		<div class="container mx-auto py-4">
-			<div class="bg-white flex gap-10 items-center shadow p-4 rounded-xl">
+			<div class="bg-white flex gap-10 items-center header-card">
 				<NuxtLink :to="`/user/${singleTok.metadata.author.unique_id}`" class="avatar-container">
 					<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${singleTok.metadata.author.unique_id}.jpeg`"
 					     class="w-36 rounded shadow" alt="">

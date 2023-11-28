@@ -1,5 +1,5 @@
 <!-- ShowPage /tiktoks/:id -->
-<script setup lang="ts" >
+<script setup >
 /*Display individual tiktok
 * Display Individual TikTok
 * Get her from clicking on the tiktok image
@@ -14,7 +14,7 @@ const store = useStore();
 const route = useRoute();
 const strings = route.params.id.split("-");
 const tiktokId = strings[strings.length - 1];
-await store.fetchTikTokById(tiktokId);
+await store.fetchTikTokById2(tiktokId);
 const data = {
 	_tik: store.tiktok.itemList[0]._tik,
 	metadata: store.tiktok.itemList[0].metadata,
@@ -27,7 +27,6 @@ let description = data.metadata.desc;
 description = description.replace(regexp, '').trim()
 
 useHead({
-	
 	link: [
 		{
 			rel: "canonical",
@@ -64,7 +63,7 @@ function millisToMinutesAndSeconds( millis ) {
 				</article>
 				<!-- Video Meta Data -->
 				<section class="">
-					<div class="flex gap-10 shadow bg-white p-4">
+					<div class="flex gap-10 shadow-xl bg-white p-4 border border-gray-300">
 						<!-- Avatar -->
 						<NuxtLink :to="`/user/${data.metadata.author.unique_id}`" class="avatar-container">
 							<img :src="`https://v2-thumbs-tiktok.files.fail/avatar/${data.metadata.author.unique_id}.jpeg`"

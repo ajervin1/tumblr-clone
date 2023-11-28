@@ -13,7 +13,7 @@ const timer = ref()
 const fetchingData = ref(false);
 
 async function loadMore() {
-	await store.searchByHashtag(hashtag, store.pagination.nextCursor);
+	await store.searchByHashtag2(hashtag, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -31,8 +31,12 @@ function observeLoadMore() {
 
 
 
+await store.searchByHashtag2(hashtag);
+onMounted(() => {
+	observeLoadMore()
+})
+// Setup SEO
 useHead({
-
 	link: [
 		{
 			rel: "canonical",
@@ -45,20 +49,15 @@ useHead({
 		{name: "keywords", content: `tiktok hash, tiktok hashtag, tiktok hashtags, tiktok hashtag viewer, hashtag tiktok viewer, tiktok #${hashtag}, #${hashtag}`  }
 	]
 })
-await store.searchByHashtag(hashtag);
-onMounted(() => {
-	observeLoadMore()
-})
-
 </script>
 
 <template>
 	<main class="hash-page">
 		<!-- HashTag Heading -->
 		<div class="container mx-auto py-4">
-			<div class="bg-white shadow p-4 rounded-xl">
+			<div class="bg-white header-card">
 				<h2 class="page-heading text-3xl">Tiktoks for #{{ hashtag }}</h2>
-				<h6 class="page-subtitle">There are {{ store.data.total}} number of tiktoks with this hashtag</h6>
+				<h6 class="page-subtitle">There are {{ store.data.total}} tiktoks with this hashtag</h6>
 			</div>
 			
 		</div>

@@ -134,11 +134,7 @@ const useStore = defineStore('state', {
 			}
 		},
 		async fetchTikTokById2(videoId = '7300945885695954206',) {
-			const {data} = await useFetch('/api/tiktok', {
-				params: {
-					videoID: videoId,
-				}
-			})
+			const {data} = await useFetch(`/api/tiktoks/${videoId}`, {})
 			if (data.value) {
 				this.tiktok = data.value
 			}
