@@ -1,5 +1,4 @@
-import { baseUrl } from "~/constants.js";
-
+import { baseUrl } from "~/utils/constants.js";
 export default defineEventHandler(async (event) => {
 	const {username, cursor} = getQuery(event)
 	const result = await $fetch(baseUrl, {

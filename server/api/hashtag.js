@@ -1,4 +1,6 @@
-const baseUrl = "https://api.tik.fail/v2/search"
+import { baseUrl } from "~/utils/constants.js";
+
+
 export default defineEventHandler(async (event) => {
 	const {hashtagName, cursor} = getQuery(event)
 	const result = await $fetch(baseUrl, {
