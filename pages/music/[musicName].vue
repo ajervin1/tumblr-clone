@@ -1,9 +1,10 @@
 <script setup lang="ts">
 
 
-import useStore from "~/store";
 
-const store = useStore()
+import useAppStore from "~/stores/appstore";
+
+const store = useAppStore()
 const config = useRuntimeConfig()
 
 const route = useRoute();
@@ -28,7 +29,7 @@ function observeLoadMore() {
 	observer.observe(triggerEl.value)
 }
 await store.searchByMusicTitle(musicName);
-const tiktok = store.data.itemList[0];
+const tiktok = store.result.itemList[0];
 const {metadata} = tiktok;
 const {author, owner_handle} = metadata.music;
 
@@ -64,7 +65,7 @@ useHead({
 					<h2 class="page-heading text-3xl">{{ musicName }}</h2>
 				</div>
 			
-				<h6 class="page-subtitle mb-5">There are {{ store.data.total}} TikToks with this sound</h6>
+				<h6 class="page-subtitle mb-5">There are {{ store.total}} TikToks with this sound</h6>
 				<audio controls :src="tiktok.metadata.music.play_url.uri" />
 			</div>
 		</div>

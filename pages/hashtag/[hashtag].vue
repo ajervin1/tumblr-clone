@@ -4,10 +4,10 @@
 * Get her from clicking on a hashtag on the ShowPage
 * */
 
-import useStore from "~/store";
+import useAppStore from "~/stores/appstore";
 
 const config = useRuntimeConfig()
-const store = useStore();
+const store = useAppStore()
 const route = useRoute();
 const {hashtag}: any = route.params
 const triggerEl = ref();
@@ -15,7 +15,7 @@ const timer = ref()
 const fetchingData = ref(false);
 
 async function loadMore() {
-	await store.searchByHashtag(hashtag, store.pagination.nextCursor);
+	await store.searchByHashTag(hashtag, store.pagination.nextCursor);
 }
 function observeLoadMore() {
 	const observer = new IntersectionObserver((entries) => {
@@ -33,7 +33,7 @@ function observeLoadMore() {
 
 
 
-await store.searchByHashtag(hashtag);
+await store.searchByHashTag(hashtag);
 onMounted(() => {
 	observeLoadMore()
 })
@@ -59,7 +59,7 @@ useHead({
 		<div class="container mx-auto py-4">
 			<div class="bg-white header-card">
 				<h2 class="page-heading text-3xl">Tiktoks for #{{ hashtag }}</h2>
-				<h6 class="page-subtitle">There are {{ store.data.total}} tiktoks with this hashtag</h6>
+				<h6 class="page-subtitle">There are {{ store.total}} tiktoks with this hashtag</h6>
 			</div>
 			
 		</div>
@@ -67,9 +67,13 @@ useHead({
 		<ItemList />
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
-		<div class="container mx-auto text-center py-4">
-			<LoadingIcon v-if="fetchingData"/>
+		<div class="container mx-auto text-center py-4" >
+			<LoadingIcon  v-if="fetchingData === true && store.nextCursor !== false"/>
+			<div class="badge badge-primary py-3 font-medium" v-else>
+				Done Loading Items
+			</div>
 		</div>
+	
 	</main>
 </template>
 

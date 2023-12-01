@@ -3,12 +3,14 @@
 /*
 * When user searches this page will handle the request
 * */
-import useStore from "~/store";
+
+
+import useAppStore from "~/stores/appstore";
 
 const config = useRuntimeConfig()
 
 
-const store = useStore()
+const store = useAppStore();
 const route = useRoute();
 
 const {username}: any = route.params;

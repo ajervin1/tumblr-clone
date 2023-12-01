@@ -3,12 +3,12 @@
 // Imports at top
 
 import {storeToRefs} from "pinia";
-import useStore from "~/store";
+import useAppStore from "~/stores/appstore";
 
 // Use functions here
 const config = useRuntimeConfig()
 
-const store = useStore();
+const store = useAppStore();
 const {count} = storeToRefs(store);
 // State Here
 const triggerEl = ref();
@@ -17,7 +17,7 @@ const fetchingData = ref(false);
 
 // Functions Here
 async function loadMore() {
-	await store.searchByHashtag('foryou', store.pagination.nextCursor);
+	await store.searchByHashTag('foryou', store.pagination.nextCursor);
 	fetchingData.value = false;
 }
 function observeLoadMore() {
@@ -39,7 +39,7 @@ function observeLoadMore() {
 
 
 // Run Code At Bottom
-await store.searchByHashtag('foryou');
+await store.searchByHashTag('foryou');
 
 // Dom Code here
 onMounted(() => {
@@ -75,8 +75,11 @@ useHead({
 		<ItemList/>
 		<!-- Trigger Element For Load More Intersection Observer-->
 		<div ref="triggerEl"></div>
-		<div class="container mx-auto text-center py-4">
+		<div class="container mx-auto text-center py-4" v-if="store.nextCursor">
 			<LoadingIcon v-if="fetchingData"/>
+		</div>
+		<div v-else>
+			Done Loading Items
 		</div>
 	</main>
 </template>
