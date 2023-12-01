@@ -30,16 +30,7 @@ export default defineNuxtConfig({
 	routeRules: {
 		'/sandbox': {index: false},
 	},
-
-	nitro: {
-		prerender: {
-			// routes: [
-			// 	"/tiktoks", '/user', '/music', '/hashtag', '/hello'
-			// ],
-			crawlLinks: true,
-
-		}
-	},
+	
 	supabase: {
 		redirect: false,
 	},
