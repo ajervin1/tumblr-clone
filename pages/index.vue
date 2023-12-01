@@ -9,7 +9,7 @@ import useAppStore from "~/stores/appstore";
 const config = useRuntimeConfig()
 
 const store = useAppStore();
-const {count} = storeToRefs(store);
+
 // State Here
 const triggerEl = ref();
 const timer = ref()
@@ -45,7 +45,7 @@ await store.searchByHashTag('foryou');
 onMounted(() => {
 	observeLoadMore();
 })
-definePageMeta({})
+
 useHead({
 	// charset: 'utf-8',
 	// viewport: 'width=device-width, initial-scale=1',

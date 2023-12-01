@@ -26,7 +26,7 @@ export default defineNuxtConfig({
 			enabled: true,
 		},
 	},
-	modules: ['nuxt-simple-sitemap','@nuxtjs/supabase', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss', "@nuxtjs/robots"],
+	modules: ['nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss', "@nuxtjs/robots"],
 	routeRules: {
 		'/sandbox': {index: false},
 	},
