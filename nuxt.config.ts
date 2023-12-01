@@ -4,7 +4,7 @@
 // @ts-ignore
 export default defineNuxtConfig({
 	site: {
-		url: "http://localhost:3000"
+		url: process.env.BASE_URL
 	},
 	typescript: {
 		strict: false,
@@ -12,6 +12,14 @@ export default defineNuxtConfig({
 	robots: {
 		UserAgent: '*',
 		Disallow: ''
+	},
+	runtimeConfig: {
+		// The private keys which are only available server-side
+		apiSecret: '123',
+		// Keys within public are also exposed client-side
+		public: {
+			baseUrl: process.env.BASE_URL ?? "http://localhost:3000"
+		}
 	},
 	/*  watchers: {
 						webpack: {
@@ -57,12 +65,6 @@ export default defineNuxtConfig({
 				"data-theme": 'light',
 			},
 			
-		}
-	},
-	runtimeConfig: {
-		baseUrl: "http://localhost:3000/",
-		public: {
-			baseUrl: "http://localhost:3000/"
 		}
 	},
 	

@@ -1,15 +1,12 @@
 <script setup>
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
-
-import { computed } from 'vue'
-
+const { tiktok: data } = defineProps([ 'tiktok' ]);
 function millisToMinutesAndSeconds( millis ) {
 	var minutes = Math.floor(millis / 60000);
 	var seconds = ((millis % 60000) / 1000).toFixed(0);
 	return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-const { tiktok: data } = defineProps([ 'tiktok' ]);
 const tikok = computed(() => {
 	return data._tik
 })
@@ -32,27 +29,24 @@ const desc = computed(() => {
 const duration = computed(() => {
 	return millisToMinutesAndSeconds(data.metadata.video.duration);
 })
-const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://fmpffrpcrpptmolosdes.supabase.co/storage/v1/object/public/daily-challenges/challenge-11.png&w=1536&q=100"
 </script>
 
 <template>
-	
-	<div
-		 class="flex flex-col border border-gray-300 overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200">
-		<figure class="relative aspect-w-1 aspect-h-1" style="/*! background: blue; */">
+	<div class="flex flex-col card-item">
+		<!-- Image -->
+		<figure class="relative aspect-w-1 aspect-h-1">
 			<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`">
 				<img :src="tikok.thumbnailDynamic" alt="Shoes"
 				     class="absolute w-full h-full object-cover inset-0"/>
 			</NuxtLink>
 		</figure>
+		
 		<div class="flex flex-col justify-between flex-1">
 			<div class="flex-1">
 				<div class="p-4 space-y-1">
 					<h2 class="text-lg font-semibold tracking-tight truncate">
 						<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`" class="hover:text-primary-600">
-							{{ metaData.desc.slice(0, 40) }} {{
-								isLongText ? "..." : ""
-							}}
+							{{ metaData.desc.slice(0, 40) }} {{isLongText ? "..." : "" }}
 						</NuxtLink>
 					</h2>
 					<h3 class="text-gray-500">
@@ -83,7 +77,6 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 							</NuxtLink>
 							<span aria-hidden="true">·</span>
 							{{ formatDistance(new Date(), new Date(metaData.create_time_ISO)) }}
-						
 						</div>
 					</h3>
 				</div>
@@ -93,17 +86,9 @@ const placeHolderImage = "https://www.webdevdaily.io/_vercel/image?url=https://f
 </template>
 
 <style scoped>
-
-
-/*
-figure {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
+.card-item {
+	@apply border border-gray-300 overflow-hidden shadow rounded-xl bg-white hover:scale-[1.04] hover:shadow-2xl ease-in-out duration-200
 }
-*/
 
 .tiktok-image {
 	display: block;

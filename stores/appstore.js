@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 const useAppStore = defineStore('app', () => {
 	// State
 	// Needed For Search Form
-	const term = ref('iamoliviaponton');
+	const term = ref('');
 	// Result of TikTok Api call
 	const result = ref(null);
 	const tiktoks = ref([]);

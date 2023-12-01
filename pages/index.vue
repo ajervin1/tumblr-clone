@@ -52,7 +52,7 @@ useHead({
 	link: [
 		{
 			rel: "canonical",
-			href: config.baseUrl
+			href: config.public.baseUrl
 		}
 	],
 	title: `TikTok Online Viewer - TikTokFlow`,
