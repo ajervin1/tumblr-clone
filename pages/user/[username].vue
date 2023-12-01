@@ -50,7 +50,7 @@ useHead({
 	link: [
 		{
 			rel: "canonical",
-			href: `${config.public.baseUrl}user/${username}`
+			href: `${config.public.baseUrl}/user/${username}`
 		}
 	],
 	title: `${singleTok.metadata.author.nickname} - @${singleTok.metadata.author.unique_id} - TikTok Viewer`,

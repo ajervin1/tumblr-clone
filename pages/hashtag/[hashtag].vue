@@ -42,7 +42,7 @@ useHead({
 	link: [
 		{
 			rel: "canonical",
-			href: `${config.public.baseUrl}hashtag/${hashtag}`
+			href: `${config.public.baseUrl}/hashtag/${hashtag}`
 		}
 	],
 	title: `Tiktok video viewer hashtag - #${hashtag}`,

@@ -43,7 +43,7 @@ useHead({
 	link: [
 		{
 			rel: "canonical",
-			href: `${config.public.baseUrl}music/${musicName}`
+			href: `${config.public.baseUrl}/music/${musicName}`
 		}
 	],
 	title: `${musicName} - ${author} - Tiktok video viewer by song`,

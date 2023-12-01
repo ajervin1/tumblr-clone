@@ -36,7 +36,7 @@ useHead({
 	link: [
 		{
 			rel: "canonical",
-			href: `${ config.public.baseUrl }tiktoks/${ route.params.id }`
+			href: `${ config.public.baseUrl}/tiktoks/${ route.params.id }`
 		}
 	],
 	title: `${ description } @${ data.metadata.author.unique_id } - Tiktok Viewer`,
