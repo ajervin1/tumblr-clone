@@ -1,6 +1,8 @@
 <script setup>
 import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+
 const { tiktok: data } = defineProps([ 'tiktok' ]);
+
 function millisToMinutesAndSeconds( millis ) {
 	var minutes = Math.floor(millis / 60000);
 	var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -42,43 +44,39 @@ const duration = computed(() => {
 		</figure>
 		
 		<div class="flex flex-col justify-between flex-1">
-			<div class="flex-1">
-				<div class="p-4 space-y-1">
-					<h2 class="text-lg font-semibold tracking-tight truncate">
-						<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`" class="hover:text-primary-600">
-							{{ metaData.desc.slice(0, 40) }} {{isLongText ? "..." : "" }}
-						</NuxtLink>
-					</h2>
-					<h3 class="text-gray-500">
-						<!-- PlayCount and Duration -->
-						<div class="relative">
-							<div class="absolute -inset-x-2 bottom-14">
-								<div class="flex justify-between">
+			<div class="p-4 space-y-1">
+				<h2 class="text-lg font-semibold tracking-tight truncate">
+					<NuxtLink :to="`/tiktoks/${desc}-${metaData.aweme_id}`" class="hover:text-primary-600">{{ metaData.desc.slice(0, 40) }} {{ isLongText ? "..." : "" }}</NuxtLink>
+				</h2>
+				<div class="text-gray-500">
+					<!-- PlayCount and Duration -->
+					<div class="relative">
+						<div class="absolute -inset-x-2 bottom-14">
+							<div class="flex justify-between">
 									<span
 										 class="inline-flex gap-1 items-center justify-center font-semibold tracking-tight rounded-full h-6 px-2 text-sm text-white bg-black/80">
 										<Icon name="mdi:play" class="w-4 h-4 text-white "/>
 										<span>{{ stats?.digg_count }}</span>
 									</span>
-									<span
-										 class="inline-flex items-center justify-center font-semibold tracking-tight rounded-full h-6 px-2 text-sm text-white bg-black/80">
+								<span
+									 class="inline-flex items-center justify-center font-semibold tracking-tight rounded-full h-6 px-2 text-sm text-white bg-black/80">
 										<span>{{ duration }}</span>
 									</span>
-								</div>
 							</div>
 						</div>
-						<!-- User Meta -->
-						<div class="text-sm">
-							<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-semibold hover:text-primary-600">
-								{{ metaData.author.nickname }}
-							</NuxtLink>
-							<br>
-							<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-medium hover:text-primary-600">
-								{{ metaData.author.unique_id }}
-							</NuxtLink>
-							<span aria-hidden="true">·</span>
-							{{ formatDistance(new Date(), new Date(metaData.create_time_ISO)) }}
-						</div>
-					</h3>
+					</div>
+					<!-- User Meta -->
+					<div class="text-sm">
+						<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-semibold hover:text-primary-600">
+							{{ metaData.author.nickname }}
+						</NuxtLink>
+						<br>
+						<NuxtLink :to="`/user/${metaData.author.unique_id}`" class="font-medium hover:text-primary-600">
+							{{ metaData.author.unique_id }}
+						</NuxtLink>
+						<span aria-hidden="true">·</span>
+						{{ formatDistance(new Date(), new Date(metaData.create_time_ISO)) }}
+					</div>
 				</div>
 			</div>
 		</div>
