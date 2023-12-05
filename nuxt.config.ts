@@ -9,10 +9,7 @@ export default defineNuxtConfig({
 	typescript: {
 		strict: false,
 	},
-	robots: {
-		UserAgent: '*',
-		Disallow: ''
-	},
+
 	runtimeConfig: {
 		// The private keys which are only available server-side
 		apiSecret: '123',
@@ -37,7 +34,7 @@ export default defineNuxtConfig({
 	sitemap: {
 		sources: ['/api/sitemap'],
 	},
-	modules: [ '@nuxtjs/supabase','nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss', "@nuxtjs/robots"],
+	modules: ['nuxt-simple-robots',  '@nuxtjs/supabase','nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
 	routeRules: {
 		'/sandbox': {index: false},
 	},
@@ -70,6 +67,12 @@ export default defineNuxtConfig({
 			
 		}
 	},
+	robots: [
+		{ UserAgent: 'googlebot' },
+		{ Disallow: '/sandbox' },
+		{ BlankLine: true },
+		{ Comment: 'Comment here' },
+	],
 	
 	tailwindcss: {
 		exposeConfig: true,
