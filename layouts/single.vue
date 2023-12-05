@@ -14,11 +14,11 @@
 				<p class="text-base  text-gray-500">
 					This site is in no way affilated with TikTok.
 					<br>
-					<a href="https://clipr.xyz/privacy-policy" class="text-primary-600">
+					<a href="#" class="text-primary-600">
 						Privacy Policy
 					</a>
 					<span aria-hidden="true">·</span>
-					<a href="https://clipr.xyz/page/terms-of-service" class="text-primary-600">
+					<a href="" class="text-primary-600">
 						Terms of Service
 					</a>
 				</p>
