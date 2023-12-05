@@ -34,11 +34,13 @@ export default defineNuxtConfig({
 			enabled: true,
 		},
 	},
+	sitemap: {
+		sources: ['/api/sitemap'],
+	},
 	modules: [ '@nuxtjs/supabase','nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss', "@nuxtjs/robots"],
 	routeRules: {
 		'/sandbox': {index: false},
 	},
-	
 	supabase: {
 		redirect: false,
 	},
