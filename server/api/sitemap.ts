@@ -8,6 +8,7 @@ export default defineSitemapEventHandler(async (event) => {
 		.select('*');
 	console.log(tiktoks)
 	const routes = tiktoks.map(tiktok => {
+		// @ts-nocheck
 		return {
 			loc: `/tiktoks/${tiktok.id}`,
 			lastmod: new Date()

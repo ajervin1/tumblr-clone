@@ -45,9 +45,9 @@ useHead({
 			href: `${config.public.baseUrl}/hashtag/${hashtag}`
 		}
 	],
-	title: `Tiktok video viewer hashtag - #${hashtag}`,
+	title: `#${hashtag} | TikTok Online Viewer Hashtag | TikTokFlow`,
 	meta: [
-		{name: "description", content: `#${hashtag} - Easily browse the tiktok videos with #${hashtag} hashtag`},
+		{name: "description", content: `#${hashtag} - Easily browse the tiktok videos with #${hashtag} on TikTokFlow`},
 		{name: "keywords", content: `tiktok hash, tiktok hashtag, tiktok hashtags, tiktok hashtag viewer, hashtag tiktok viewer, tiktok #${hashtag}, #${hashtag}`  }
 	]
 })

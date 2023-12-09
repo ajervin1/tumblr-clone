@@ -42,6 +42,7 @@ export default defineNuxtConfig({
 		redirect: false,
 	},
 	// @ts-ignore
+	// Global Head Setup
 	app: {
 		head: {
 			// title: "TikTok Clone",
