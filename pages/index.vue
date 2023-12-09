@@ -47,18 +47,17 @@ onMounted(() => {
 })
 
 useHead({
-	// charset: 'utf-8',
-	// viewport: 'width=device-width, initial-scale=1',
+
 	link: [
 		{
 			rel: "canonical",
 			href: config.public.baseUrl
 		}
 	],
-	title: `TikTok Online Viewer - TikTokFlow`,
+	title: `TikTok Online Viewer | TikTokFlow`,
 	meta: [
-		{name: "description", content: "New expirience with anonymous TikTok Viewer. Discover trending videos, viral content and talented creators. Explore TikTok videos privately without account and app"},
-		{name: "keywords", content: "tiktok online, tiktok viewer, tiktok viral, tiktok anonymous, tiktokflow, tiktokflow.com"  }
+		{name: "description", content: "Anonymous TikTok Viewer. Discover trending videos, viral content and talented creators. TikTokFlow allows you to explore TikTok videos privately without account and app"},
+		{name: "keywords", content: "tiktok online,tiktok online viewer , tiktok viewer, tiktok viral, tiktok anonymous, tiktokflow, tiktokflow.tech"  }
 	]
 })
 </script>

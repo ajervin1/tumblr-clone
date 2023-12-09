@@ -18,9 +18,9 @@ export default defineEventHandler(async (event) => {
 		const {_tik, metadata} = tiktok;
 		const video_url = _tik.video;
 		const id = _tik.id;
-		const {desc, create_time, statistics} = metadata;
+		const {desc, create_time, statistics, author} = metadata;
 		const {comment_count, play_count, digg_count, share_count} = statistics;
-		return {id, created_at: create_time, desc, digg_count, comment_count, play_count, share_count, video_url}
+		return {id, created_at: create_time, desc, digg_count, comment_count, play_count, share_count, video_url, username: author.unique_id}
 	});
 
 	await client.from("tiktoks").upsert(tiktoks)

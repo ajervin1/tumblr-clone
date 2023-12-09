@@ -1,6 +1,6 @@
 
 
-// @ts-ignore
+// @ts-nocheck
 // @ts-ignore
 export default defineNuxtConfig({
 	site: {
@@ -32,7 +32,8 @@ export default defineNuxtConfig({
 		},
 	},
 	sitemap: {
-		sources: ['/api/sitemap'],
+		sources: ["/api/sitemap"],
+		sitemaps: true,
 	},
 	modules: ['nuxt-simple-robots',  '@nuxtjs/supabase','nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
 	routeRules: {

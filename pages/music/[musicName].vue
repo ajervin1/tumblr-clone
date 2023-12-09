@@ -46,7 +46,7 @@ useHead({
 			href: `${config.public.baseUrl}/music/${musicName}`
 		}
 	],
-	title: `${musicName} - ${author} - Tiktok video viewer by song`,
+	title: `${musicName} - ${author} | Tiktok viewer with song | TikTokFlow`,
 	meta: [
 		{name: "description", content: `Tiktok video viewer with song ${musicName} - ${author}`},
 		{name: "keywords", content: `tiktok videos, tiktok music, tiktok song, ${author}, ${owner_handle}, ${musicName}, tiktok music viewer`  }

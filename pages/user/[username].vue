@@ -6,19 +6,18 @@
 
 
 import useAppStore from "~/stores/appstore";
-
+// Composables
 const config = useRuntimeConfig()
-
-
 const store = useAppStore();
 const route = useRoute();
 
+//  State
 const {username}: any = route.params;
 const triggerEl = ref();
 const timer = ref()
 const fetchingData = ref(false);
 
-
+// Functions
 async function loadMore() {
 	await store.searchByUsername(username, store.pagination.nextCursor);
 }
@@ -36,7 +35,7 @@ function observeLoadMore() {
 	observer.observe(triggerEl.value)
 }
 
-
+// Start of code
 await store.searchByUsername(username)
 const singleTok = store.tiktoks[0];
 const {unique_id, nickname} = singleTok.metadata.author
@@ -53,7 +52,7 @@ useHead({
 			href: `${config.public.baseUrl}/user/${username}`
 		}
 	],
-	title: `${singleTok.metadata.author.nickname} - @${singleTok.metadata.author.unique_id} - TikTok Viewer`,
+	title: `${singleTok.metadata.author.nickname} - @${singleTok.metadata.author.unique_id} | TikTok Viewer`,
 	meta: [
 		{name: "description", content: `@${singleTok.metadata.author.unique_id} ${singleTok.metadata.author.nickname} ${singleTok.metadata.author.signature}`},
 		{name: "keywords", content: `@${unique_id}, ${nickname}, tiktok profile, tiktok account, tiktok overview, tiktok viewer`  }
