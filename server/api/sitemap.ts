@@ -19,7 +19,7 @@ export default defineSitemapEventHandler(async (event) => {
 	const usernameSet = new Set(usernames);
 	usernameSet.forEach(username => {
 		routes.push({
-			loc: `/tiktoks/user/${username}}`,
+			loc: `/tiktoks/user/${username}`,
 			lastmod: new Date()
 		})
 	})
