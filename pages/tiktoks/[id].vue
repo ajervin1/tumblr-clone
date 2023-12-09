@@ -115,7 +115,7 @@ function millisToMinutesAndSeconds( millis ) {
 									<Icon name="mdi:calendar" class="w-5 h-5"/>
 									{{ new Date(data.metadata.create_time_ISO).toLocaleDateString() }}
 								</h6>
-								<h6 class="flex items-center gap-2">
+								<h6 class="flex items-center gap-2 ">
 									<Icon name="mdi:heart" class="w-5 h-5"/>
 									{{ data.metadata.statistics.digg_count }}
 								</h6>

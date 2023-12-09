@@ -33,7 +33,7 @@ export default defineNuxtConfig({
 	},
 	sitemap: {
 		sources: ["/api/sitemap"],
-		sitemaps: true,
+		// sitemaps: true,
 	},
 	modules: ['nuxt-simple-robots',  '@nuxtjs/supabase','nuxt-simple-sitemap', 'nuxt-icon', '@pinia/nuxt', '@nuxtjs/tailwindcss',],
 	routeRules: {
