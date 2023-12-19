@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 		apiSecret: '123',
 		// Keys within public are also exposed client-side
 		public: {
+			gtagId: "G-YV2S4077XY",
 			baseUrl: process.env.BASE_URL ?? "http://localhost:3000"
 		}
 	},
